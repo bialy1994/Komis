@@ -1,0 +1,330 @@
+#pragma once
+#include"LoginForm.h"
+
+namespace Komis {
+
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
+
+	/// <summary>
+	/// Summary for MainForm
+	/// </summary>
+	public ref class MainForm : public System::Windows::Forms::Form
+	{
+	public:
+		MainForm(void)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~MainForm()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+	private: System::Windows::Forms::Label^  przebiegOdLabel;
+	protected:
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  rokProdukcjiOdLabel;
+	private: System::Windows::Forms::Label^  rokProdukcjiDoLabel;
+	private: System::Windows::Forms::Label^  mocOdLabel;
+	private: System::Windows::Forms::Label^  mocDoLabel;
+	private: System::Windows::Forms::Label^  pojemnoscOdLabel;
+	private: System::Windows::Forms::Label^  pojemnoscDoLabel;
+	private: System::Windows::Forms::Label^  rodzajPaliwaLabel;
+	private: System::Windows::Forms::Label^  typNadwoziaLabel;
+	private: System::Windows::Forms::TextBox^  przebiegOdTextBox;
+	private: System::Windows::Forms::TextBox^  przebiegDoTextBox;
+	private: System::Windows::Forms::TextBox^  rokProdukcjiOdTextBox;
+	private: System::Windows::Forms::TextBox^  rokProdukcjiDoTextBox;
+	private: System::Windows::Forms::TextBox^  mocOdTextBox;
+	private: System::Windows::Forms::TextBox^  mocDoTextBox;
+	private: System::Windows::Forms::TextBox^  pojemnoscOdTextBox;
+	private: System::Windows::Forms::TextBox^  pojemnoscDoTextBox;
+	private: System::Windows::Forms::ComboBox^  paliwoComboBox;
+	private: System::Windows::Forms::ComboBox^  nadwozieComboBox;
+	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  filtrujButton;
+	private: System::Windows::Forms::LinkLabel^  wylogujLinkLabel;
+
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		System::ComponentModel::Container ^components;
+
+#pragma region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
+			this->przebiegOdLabel = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->rokProdukcjiOdLabel = (gcnew System::Windows::Forms::Label());
+			this->rokProdukcjiDoLabel = (gcnew System::Windows::Forms::Label());
+			this->mocOdLabel = (gcnew System::Windows::Forms::Label());
+			this->mocDoLabel = (gcnew System::Windows::Forms::Label());
+			this->pojemnoscOdLabel = (gcnew System::Windows::Forms::Label());
+			this->pojemnoscDoLabel = (gcnew System::Windows::Forms::Label());
+			this->rodzajPaliwaLabel = (gcnew System::Windows::Forms::Label());
+			this->typNadwoziaLabel = (gcnew System::Windows::Forms::Label());
+			this->przebiegOdTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->przebiegDoTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->rokProdukcjiOdTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->rokProdukcjiDoTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->mocOdTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->mocDoTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->pojemnoscOdTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->pojemnoscDoTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->paliwoComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->nadwozieComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->filtrujButton = (gcnew System::Windows::Forms::Button());
+			this->wylogujLinkLabel = (gcnew System::Windows::Forms::LinkLabel());
+			this->SuspendLayout();
+			// 
+			// przebiegOdLabel
+			// 
+			this->przebiegOdLabel->AutoSize = true;
+			this->przebiegOdLabel->Location = System::Drawing::Point(14, 12);
+			this->przebiegOdLabel->Name = L"przebiegOdLabel";
+			this->przebiegOdLabel->Size = System::Drawing::Size(63, 13);
+			this->przebiegOdLabel->TabIndex = 0;
+			this->przebiegOdLabel->Text = L"Przebieg od";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(83, 12);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(63, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Przebieg do";
+			// 
+			// rokProdukcjiOdLabel
+			// 
+			this->rokProdukcjiOdLabel->AutoSize = true;
+			this->rokProdukcjiOdLabel->Location = System::Drawing::Point(152, 12);
+			this->rokProdukcjiOdLabel->Name = L"rokProdukcjiOdLabel";
+			this->rokProdukcjiOdLabel->Size = System::Drawing::Size(88, 13);
+			this->rokProdukcjiOdLabel->TabIndex = 2;
+			this->rokProdukcjiOdLabel->Text = L"Rok produkcji od";
+			// 
+			// rokProdukcjiDoLabel
+			// 
+			this->rokProdukcjiDoLabel->AutoSize = true;
+			this->rokProdukcjiDoLabel->Location = System::Drawing::Point(246, 12);
+			this->rokProdukcjiDoLabel->Name = L"rokProdukcjiDoLabel";
+			this->rokProdukcjiDoLabel->Size = System::Drawing::Size(88, 13);
+			this->rokProdukcjiDoLabel->TabIndex = 3;
+			this->rokProdukcjiDoLabel->Text = L"Rok produkcji do";
+			// 
+			// mocOdLabel
+			// 
+			this->mocOdLabel->AutoSize = true;
+			this->mocOdLabel->Location = System::Drawing::Point(337, 12);
+			this->mocOdLabel->Name = L"mocOdLabel";
+			this->mocOdLabel->Size = System::Drawing::Size(43, 13);
+			this->mocOdLabel->TabIndex = 4;
+			this->mocOdLabel->Text = L"Moc od";
+			// 
+			// mocDoLabel
+			// 
+			this->mocDoLabel->AutoSize = true;
+			this->mocDoLabel->Location = System::Drawing::Point(406, 12);
+			this->mocDoLabel->Name = L"mocDoLabel";
+			this->mocDoLabel->Size = System::Drawing::Size(43, 13);
+			this->mocDoLabel->TabIndex = 5;
+			this->mocDoLabel->Text = L"Moc do";
+			// 
+			// pojemnoscOdLabel
+			// 
+			this->pojemnoscOdLabel->AutoSize = true;
+			this->pojemnoscOdLabel->Location = System::Drawing::Point(14, 51);
+			this->pojemnoscOdLabel->Name = L"pojemnoscOdLabel";
+			this->pojemnoscOdLabel->Size = System::Drawing::Size(74, 13);
+			this->pojemnoscOdLabel->TabIndex = 6;
+			this->pojemnoscOdLabel->Text = L"Pojemnoœæ od";
+			// 
+			// pojemnoscDoLabel
+			// 
+			this->pojemnoscDoLabel->AutoSize = true;
+			this->pojemnoscDoLabel->Location = System::Drawing::Point(85, 51);
+			this->pojemnoscDoLabel->Name = L"pojemnoscDoLabel";
+			this->pojemnoscDoLabel->Size = System::Drawing::Size(74, 13);
+			this->pojemnoscDoLabel->TabIndex = 7;
+			this->pojemnoscDoLabel->Text = L"Pojemnoœæ do";
+			// 
+			// rodzajPaliwaLabel
+			// 
+			this->rodzajPaliwaLabel->AutoSize = true;
+			this->rodzajPaliwaLabel->Location = System::Drawing::Point(156, 51);
+			this->rodzajPaliwaLabel->Name = L"rodzajPaliwaLabel";
+			this->rodzajPaliwaLabel->Size = System::Drawing::Size(73, 13);
+			this->rodzajPaliwaLabel->TabIndex = 8;
+			this->rodzajPaliwaLabel->Text = L"Rodzaj paliwa";
+			// 
+			// typNadwoziaLabel
+			// 
+			this->typNadwoziaLabel->AutoSize = true;
+			this->typNadwoziaLabel->Location = System::Drawing::Point(232, 51);
+			this->typNadwoziaLabel->Name = L"typNadwoziaLabel";
+			this->typNadwoziaLabel->Size = System::Drawing::Size(73, 13);
+			this->typNadwoziaLabel->TabIndex = 9;
+			this->typNadwoziaLabel->Text = L"Typ nadwozia";
+			// 
+			// przebiegOdTextBox
+			// 
+			this->przebiegOdTextBox->Location = System::Drawing::Point(17, 28);
+			this->przebiegOdTextBox->Name = L"przebiegOdTextBox";
+			this->przebiegOdTextBox->Size = System::Drawing::Size(65, 20);
+			this->przebiegOdTextBox->TabIndex = 10;
+			// 
+			// przebiegDoTextBox
+			// 
+			this->przebiegDoTextBox->Location = System::Drawing::Point(86, 28);
+			this->przebiegDoTextBox->Name = L"przebiegDoTextBox";
+			this->przebiegDoTextBox->Size = System::Drawing::Size(65, 20);
+			this->przebiegDoTextBox->TabIndex = 11;
+			// 
+			// rokProdukcjiOdTextBox
+			// 
+			this->rokProdukcjiOdTextBox->Location = System::Drawing::Point(155, 28);
+			this->rokProdukcjiOdTextBox->Name = L"rokProdukcjiOdTextBox";
+			this->rokProdukcjiOdTextBox->Size = System::Drawing::Size(85, 20);
+			this->rokProdukcjiOdTextBox->TabIndex = 12;
+			// 
+			// rokProdukcjiDoTextBox
+			// 
+			this->rokProdukcjiDoTextBox->Location = System::Drawing::Point(249, 28);
+			this->rokProdukcjiDoTextBox->Name = L"rokProdukcjiDoTextBox";
+			this->rokProdukcjiDoTextBox->Size = System::Drawing::Size(85, 20);
+			this->rokProdukcjiDoTextBox->TabIndex = 13;
+			// 
+			// mocOdTextBox
+			// 
+			this->mocOdTextBox->Location = System::Drawing::Point(340, 28);
+			this->mocOdTextBox->Name = L"mocOdTextBox";
+			this->mocOdTextBox->Size = System::Drawing::Size(65, 20);
+			this->mocOdTextBox->TabIndex = 14;
+			// 
+			// mocDoTextBox
+			// 
+			this->mocDoTextBox->Location = System::Drawing::Point(409, 28);
+			this->mocDoTextBox->Name = L"mocDoTextBox";
+			this->mocDoTextBox->Size = System::Drawing::Size(65, 20);
+			this->mocDoTextBox->TabIndex = 15;
+			// 
+			// pojemnoscOdTextBox
+			// 
+			this->pojemnoscOdTextBox->Location = System::Drawing::Point(17, 67);
+			this->pojemnoscOdTextBox->Name = L"pojemnoscOdTextBox";
+			this->pojemnoscOdTextBox->Size = System::Drawing::Size(65, 20);
+			this->pojemnoscOdTextBox->TabIndex = 16;
+			// 
+			// pojemnoscDoTextBox
+			// 
+			this->pojemnoscDoTextBox->Location = System::Drawing::Point(88, 67);
+			this->pojemnoscDoTextBox->Name = L"pojemnoscDoTextBox";
+			this->pojemnoscDoTextBox->Size = System::Drawing::Size(65, 20);
+			this->pojemnoscDoTextBox->TabIndex = 17;
+			// 
+			// paliwoComboBox
+			// 
+			this->paliwoComboBox->FormattingEnabled = true;
+			this->paliwoComboBox->Location = System::Drawing::Point(159, 67);
+			this->paliwoComboBox->Name = L"paliwoComboBox";
+			this->paliwoComboBox->Size = System::Drawing::Size(70, 21);
+			this->paliwoComboBox->TabIndex = 18;
+			// 
+			// nadwozieComboBox
+			// 
+			this->nadwozieComboBox->FormattingEnabled = true;
+			this->nadwozieComboBox->Location = System::Drawing::Point(235, 67);
+			this->nadwozieComboBox->Name = L"nadwozieComboBox";
+			this->nadwozieComboBox->Size = System::Drawing::Size(70, 21);
+			this->nadwozieComboBox->TabIndex = 19;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(530, 65);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(97, 23);
+			this->button1->TabIndex = 20;
+			this->button1->Text = L"Dodaj pojazd";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
+			// filtrujButton
+			// 
+			this->filtrujButton->Location = System::Drawing::Point(330, 65);
+			this->filtrujButton->Name = L"filtrujButton";
+			this->filtrujButton->Size = System::Drawing::Size(75, 23);
+			this->filtrujButton->TabIndex = 21;
+			this->filtrujButton->Text = L"Filtruj";
+			this->filtrujButton->UseVisualStyleBackColor = true;
+			// 
+			// wylogujLinkLabel
+			// 
+			this->wylogujLinkLabel->AutoSize = true;
+			this->wylogujLinkLabel->Location = System::Drawing::Point(572, 31);
+			this->wylogujLinkLabel->Name = L"wylogujLinkLabel";
+			this->wylogujLinkLabel->Size = System::Drawing::Size(45, 13);
+			this->wylogujLinkLabel->TabIndex = 22;
+			this->wylogujLinkLabel->TabStop = true;
+			this->wylogujLinkLabel->Text = L"Wyloguj";
+			this->wylogujLinkLabel->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MainForm::wylogujLinkLabel_LinkClicked);
+			// 
+			// MainForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(639, 374);
+			this->Controls->Add(this->wylogujLinkLabel);
+			this->Controls->Add(this->filtrujButton);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->nadwozieComboBox);
+			this->Controls->Add(this->paliwoComboBox);
+			this->Controls->Add(this->pojemnoscDoTextBox);
+			this->Controls->Add(this->pojemnoscOdTextBox);
+			this->Controls->Add(this->mocDoTextBox);
+			this->Controls->Add(this->mocOdTextBox);
+			this->Controls->Add(this->rokProdukcjiDoTextBox);
+			this->Controls->Add(this->rokProdukcjiOdTextBox);
+			this->Controls->Add(this->przebiegDoTextBox);
+			this->Controls->Add(this->przebiegOdTextBox);
+			this->Controls->Add(this->typNadwoziaLabel);
+			this->Controls->Add(this->rodzajPaliwaLabel);
+			this->Controls->Add(this->pojemnoscDoLabel);
+			this->Controls->Add(this->pojemnoscOdLabel);
+			this->Controls->Add(this->mocDoLabel);
+			this->Controls->Add(this->mocOdLabel);
+			this->Controls->Add(this->rokProdukcjiDoLabel);
+			this->Controls->Add(this->rokProdukcjiOdLabel);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->przebiegOdLabel);
+			this->Name = L"MainForm";
+			this->Text = L"MainForm";
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
+		}
+#pragma endregion
+
+private: System::Void wylogujLinkLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
+};
+}
