@@ -1,3 +1,4 @@
+  Komis.DodajPojazdForm.resources - Embedded, ContainedInManifestFile, 
   Komis.ErrorForm.resources - Embedded, ContainedInManifestFile, 
   Komis.LoginForm.resources - Embedded, ContainedInManifestFile, 
   Komis.MainForm.resources - Embedded, ContainedInManifestFile, 
@@ -16,6 +17,9 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class Komis.DodajPojazdForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Komis.ErrorForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

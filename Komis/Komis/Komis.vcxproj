@@ -125,6 +125,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DodajPojazdForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Enums.h" />
     <ClInclude Include="ErrorForm.h">
       <FileType>CppForm</FileType>
@@ -143,6 +146,7 @@
     <ClInclude Include="Uzytkownik.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DodajPojazdForm.cpp" />
     <ClCompile Include="ErrorForm.cpp" />
     <ClCompile Include="Listy.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -162,6 +166,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DodajPojazdForm.resx">
+      <DependentUpon>DodajPojazdForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.h</DependentUpon>
     </EmbeddedResource>
