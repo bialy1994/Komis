@@ -425,55 +425,228 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 {
 	Listy lista;
 	Pojazd pojazd;
-	
-	
-	switch (this->kategoriaComboBox->TabIndex)
+	bool isError = false;
+	int tmp;
+
+	pojazd.wyposazenie.automatycznaSkrzynia = this->automatCheckBox->Checked;
+	pojazd.wyposazenie.elLusterka = this->lusterkaCheckBox->Checked;
+	pojazd.wyposazenie.elSzyby = this->szybyCheckBox->Checked;
+	pojazd.wyposazenie.klimatyzacja = this->klimaCheckBox->Checked;
+	pojazd.wyposazenie.nawigacja = this->nawigacjaCheckBox->Checked;
+	pojazd.wyposazenie.zestawGlosnomowiacy = this->glosnomowiacyCheckBox->Checked;
+
+	pojazd.SetNazwaMarki(msclr::interop::marshal_as<std::string>(this->markaTextBox->Text));
+
+	pojazd.SetNazwaModelu(msclr::interop::marshal_as<std::string>(this->modelTextBox->Text));
+
+	if (this->rokTextBox->Text->Length == 4)
 	{
-	case 1:
+		try 
+		{
+			tmp = Int16::Parse(this->rokTextBox->Text);
+			pojazd.SetRokProdukcji(tmp);
+		}
+		catch (System::FormatException^ e)
+		{
+			MessageBox::Show("Niepoprawny format daty");
+			isError = true;
+		}
+	}
+	else
+	{
+		MessageBox::Show("Niepoprawny format daty");
+		isError = true;
+	}
+
+	try
+	{
+		tmp = Int16::Parse(this->pojemnoscTextBox->Text);
+		pojazd.SetPojemnosc(tmp);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("Niepoprawne dane w polu pojemnosc");
+		isError = true;
+	}
+
+	try
+	{
+		tmp = Int16::Parse(this->mocTextBox->Text);
+		pojazd.SetMoc(tmp);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("Niepoprawne dane w polu moc");
+		isError = true;
+	}
+
+	try
+	{
+		tmp = Int32::Parse(this->przebiegTextBox->Text);
+		pojazd.SetPrzebieg(tmp);
+	}
+	catch (System::FormatException^ e)
+	{
+		MessageBox::Show("Niepoprawne dane w polu przebieg");
+		isError = true;
+	}
+
+	pojazd.SetVin(msclr::interop::marshal_as<std::string>(this->vinTextBox->Text));
+
+	pojazd.SetKolor(msclr::interop::marshal_as<std::string>(this->kolorTextBox->Text));
+
+	switch (this->kategoriaComboBox->SelectedIndex)
+	{
+	case 0:
 		pojazd.SetKategoria(KategoriaPojazdu::A);
 		break;
-	case 2:
+	case 1:
 		pojazd.SetKategoria(KategoriaPojazdu::A1);
 		break;
-	case 3:
+	case 2:
 		pojazd.SetKategoria(KategoriaPojazdu::B);
 		break;
-	case 4:
+	case 3:
 		pojazd.SetKategoria(KategoriaPojazdu::BE);
 		break;
-	case 5:
+	case 4:
 		pojazd.SetKategoria(KategoriaPojazdu::C);
 		break;
-	case 6:
+	case 5:
 		pojazd.SetKategoria(KategoriaPojazdu::CE);
 		break;
-	case 7:
+	case 6:
 		pojazd.SetKategoria(KategoriaPojazdu::C1);
 		break;
-	case 8:
+	case 7:
 		pojazd.SetKategoria(KategoriaPojazdu::C1E);
 		break;
-	case 9:
+	case 8:
 		pojazd.SetKategoria(KategoriaPojazdu::D);
 		break;
-	case 10:
+	case 9:
 		pojazd.SetKategoria(KategoriaPojazdu::DE);
 		break;
-	case 11:
+	case 10:
 		pojazd.SetKategoria(KategoriaPojazdu::D1);
 		break;
-	case 12:
+	case 11:
 		pojazd.SetKategoria(KategoriaPojazdu::D1E);
 		break;
-	case 13:
+	case 12:
 		pojazd.SetKategoria(KategoriaPojazdu::DODATKOWE_UPRAWNIENIA);
 		break;
 	default:
 		break;
 	}
 
-	//lista.WczytajListePojazdow();
-	lista.ListaPojazdow.push_back(pojazd);
-	lista.ZapiszListePojazdow();
+	switch (this->nadwozieComboBox->SelectedIndex)
+	{
+	case 0:
+		pojazd.SetTypNadwozia(TypNadwozia::SEDAN);
+		break;
+	case 1:
+		pojazd.SetTypNadwozia(TypNadwozia::HATCHBACK);
+		break;
+	case 2:
+		pojazd.SetTypNadwozia(TypNadwozia::KOMBI);
+		break;
+	case 3:
+		pojazd.SetTypNadwozia(TypNadwozia::PICKUP);
+		break;
+	case 4:
+		pojazd.SetTypNadwozia(TypNadwozia::KABRIOLET);
+		break;
+	case 5:
+		pojazd.SetTypNadwozia(TypNadwozia::MINIVAN);
+		break;
+	case 6:
+		pojazd.SetTypNadwozia(TypNadwozia::VAN);
+		break;
+	case 7:
+		pojazd.SetTypNadwozia(TypNadwozia::COUPE);
+		break;
+	case 8:
+		pojazd.SetTypNadwozia(TypNadwozia::INNY);
+		break;
+	default:
+		break;
+	}
+
+	switch (this->typComboBox->SelectedIndex)
+	{
+	case 0:
+		pojazd.SetTyp(TypMaszyny::SAMOCHOD);
+		break;
+	case 1:
+		pojazd.SetTyp(TypMaszyny::CIEZAROWKA);
+		break;
+	case 2:
+		pojazd.SetTyp(TypMaszyny::POJAZD_WOJSKOWY);
+		break;
+	case 3:
+		pojazd.SetTyp(TypMaszyny::POJAZD_BUDOWLANY);
+		break;
+	case 4:
+		pojazd.SetTyp(TypMaszyny::INNE);
+		break;
+
+	default:
+		break;
+	}
+
+	switch (this->PaliwoComboBox->SelectedIndex)
+	{
+	case 0:
+		pojazd.SetRodzajPaliwa(Paliwo::DIESEL);
+		break;
+	case 1:
+		pojazd.SetRodzajPaliwa(Paliwo::BENZYNA);
+		break;
+	case 2:
+		pojazd.SetRodzajPaliwa(Paliwo::ELEKTRYCZNY);
+		break;
+	case 3:
+		pojazd.SetRodzajPaliwa(Paliwo::LPG);
+		break;
+	case 4:
+		pojazd.SetRodzajPaliwa(Paliwo::BENZYNA_LPG);
+		break;
+	case 5:
+		pojazd.SetRodzajPaliwa(Paliwo::HYBRYDOWY);
+		break;
+
+	default:
+		break;
+	}
+
+	switch (this->napedComboBox->SelectedIndex)
+	{
+	case 0:
+		pojazd.SetNaped(Naped::TYL);
+		break;
+	case 1:
+		pojazd.SetNaped(Naped::PRZOD);
+		break;
+	case 2:
+		pojazd.SetNaped(Naped::NACZTERY);
+		break;
+	default:
+		break;
+	}
+
+	if (!isError)
+	{
+		lista.WczytajListePojazdow();
+		lista.ListaPojazdow.push_back(pojazd);
+		lista.ZapiszListePojazdow();
+		MessageBox::Show("Pomyslnie dodano pojazd");
+		this->Hide();
+	}
+	else
+	{
+		MessageBox::Show("Dodawanie pojazdu nie powiodlo sie");
+		isError = false;
+	}
 }
 

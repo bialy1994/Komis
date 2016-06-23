@@ -1,2 +1,24 @@
-﻿  Komis.vcxproj -> G:\Komis\Debug\Komis.exe
-  Komis.vcxproj -> G:\Komis\Debug\Komis.pdb (Partial PDB)
+﻿  DodajPojazdForm.cpp
+DodajPojazdForm.cpp(449): warning C4101: 'e': unreferenced local variable
+DodajPojazdForm.cpp(466): warning C4101: 'e': unreferenced local variable
+DodajPojazdForm.cpp(477): warning C4101: 'e': unreferenced local variable
+DodajPojazdForm.cpp(488): warning C4101: 'e': unreferenced local variable
+  ErrorForm.cpp
+  Listy.cpp
+Listy.cpp(200): warning C4227: anachronism used: qualifiers on reference are ignored
+  LoginForm.cpp
+  Main.cpp
+Main.cpp(7): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  Marka.cpp
+  Maszyna.cpp
+  Model.cpp
+  MainForm.cpp
+  Pojazd.cpp
+  Uzytkownik.cpp
+  Generating Code...
+c:\users\michał białuski\documents\github\komis\komis\komis\listy.cpp(228): warning C4717: 'operator>>': recursive on all control paths, function will cause runtime stack overflow
+c:\users\michał białuski\documents\github\komis\komis\komis\listy.cpp(234): warning C4717: 'operator<<': recursive on all control paths, function will cause runtime stack overflow
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.exe
+  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)

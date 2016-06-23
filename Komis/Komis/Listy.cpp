@@ -159,7 +159,41 @@ std::list<Pojazd> Listy::GetListByRodzajNadwozia(TypNadwozia typ)
 
 std::istream& operator >> (std::istream& is, Pojazd &pojazd)
 {
-	is >> pojazd;
+	int intTmp;
+	std::string strTmp;
+
+	is >> intTmp;
+	pojazd.SetKategoria(KategoriaPojazdu(intTmp));
+	is >> strTmp;
+	pojazd.SetKolor(strTmp);
+	is >> intTmp;
+	pojazd.SetMoc(intTmp);
+	is >> intTmp;
+	pojazd.SetNaped(Naped(intTmp));
+	is >> strTmp;
+	pojazd.SetNazwaMarki(strTmp);
+	is >> strTmp;
+	pojazd.SetNazwaModelu(strTmp);
+	is >> intTmp;
+	pojazd.SetPojemnosc(intTmp);
+	is >> intTmp;
+	pojazd.SetPrzebieg(intTmp);
+	is >> intTmp;
+	pojazd.SetRodzajPaliwa(Paliwo(intTmp));
+	is >> intTmp;
+	pojazd.SetRokProdukcji(intTmp);
+	is >> intTmp;
+	pojazd.SetTyp(TypMaszyny(intTmp));
+	is >> intTmp;
+	pojazd.SetTypNadwozia(TypNadwozia(intTmp));
+	is >> strTmp;
+	pojazd.SetVin(strTmp);
+	is >> pojazd.wyposazenie.automatycznaSkrzynia;
+	is >> pojazd.wyposazenie.elLusterka;
+	is >> pojazd.wyposazenie.elSzyby;
+	is >> pojazd.wyposazenie.klimatyzacja;
+	is >> pojazd.wyposazenie.nawigacja;
+	is >> pojazd.wyposazenie.zestawGlosnomowiacy;
 	return is;
 }
 
