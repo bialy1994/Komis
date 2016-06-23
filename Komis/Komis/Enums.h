@@ -62,3 +62,4 @@ enum Uprawnienia
 	SPRZEDAWCA,
 	KUPIEC
 };
+

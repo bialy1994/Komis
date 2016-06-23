@@ -1,6 +1,6 @@
 #pragma once
-#include<string>
 #include "Enums.h"
+#include<string>
 
 class Uzytkownik
 {

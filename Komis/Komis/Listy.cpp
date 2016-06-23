@@ -2,7 +2,8 @@
 #include<iostream>
 
 
-
+using namespace System;
+using namespace System::Windows::Forms;
 Listy::Listy()
 {
 }
@@ -14,29 +15,29 @@ Listy::~Listy()
 	ListaUzytkownikow.clear();
 }
 
-std::list<Pojazd> Listy::GetListByPrzebieg(int przebiegOd, int przebiegDo)
+void Listy::GetListByPrzebiegOd(int przebiegOd, std::list<Pojazd> lista)
+{
+	std::list<Pojazd>::iterator iterator;
+
+	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+	{
+		if (iterator->GetPrzebieg() > przebiegOd)
+		{
+			lista.push_back(*iterator);
+		}
+	}
+}
+
+std::list<Pojazd> Listy::GetListByPrzebiegDo(int przebiegDo)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	if (przebiegDo < 0)
+	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
 	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+		if (iterator->GetPrzebieg() < przebiegDo)
 		{
-			if (iterator->GetPrzebieg() > przebiegOd)
-			{
-				lista.push_back(*iterator);
-			}
-		}
-	}
-	else
-	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
-		{
-			if (iterator->GetPrzebieg() > przebiegOd && iterator->GetPrzebieg() < przebiegDo)
-			{
-				lista.push_back(*iterator);
-			}
+			lista.push_back(*iterator);
 		}
 	}
 	return lista;
@@ -47,24 +48,11 @@ std::list<Pojazd> Listy::GetListByRocznik(short rokOd, short rokDo)
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	if (rokDo < 0)
+	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
 	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+		if (iterator->GetRokProdukcji() > rokOd && iterator->GetRokProdukcji() < rokDo)
 		{
-			if (iterator->GetRokProdukcji() > rokOd)
-			{
-				lista.push_back(*iterator);
-			}
-		}
-	}
-	else
-	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
-		{
-			if (iterator->GetRokProdukcji() > rokOd && iterator->GetRokProdukcji() < rokDo)
-			{
-				lista.push_back(*iterator);
-			}
+			lista.push_back(*iterator);
 		}
 	}
 	return lista;
@@ -199,37 +187,47 @@ std::istream& operator >> (std::istream& is, Pojazd &pojazd)
 
 std::ostream& operator << (std::ostream& os, Pojazd& const pojazd)
 {
-	os << pojazd.GetKategoria();
-	os << pojazd.GetKolor();
-	os << pojazd.GetMoc();
-	os << pojazd.GetNaped();
-	os << pojazd.GetNazwaMarki();
-	os << pojazd.GetNazwaModelu();
-	os << pojazd.GetPojemnosc();
-	os << pojazd.GetPrzebieg();
-	os << pojazd.GetRodzajPaliwa();
-	os << pojazd.GetRokProdukcji();
-	os << pojazd.GetTyp();
-	os << pojazd.GetTypNadwozia();
-	os << pojazd.GetVin();
-	os << pojazd.wyposazenie.automatycznaSkrzynia;
-	os << pojazd.wyposazenie.elLusterka;
-	os << pojazd.wyposazenie.elSzyby;
-	os << pojazd.wyposazenie.klimatyzacja;
-	os << pojazd.wyposazenie.nawigacja;
-	os << pojazd.wyposazenie.zestawGlosnomowiacy;
+	os << pojazd.GetKategoria()<<std::endl;
+	os << pojazd.GetKolor() << std::endl;
+	os << pojazd.GetMoc() << std::endl;
+	os << pojazd.GetNaped() << std::endl;
+	os << pojazd.GetNazwaMarki() << std::endl;
+	os << pojazd.GetNazwaModelu() << std::endl;
+	os << pojazd.GetPojemnosc() << std::endl;
+	os << pojazd.GetPrzebieg() << std::endl;
+	os << pojazd.GetRodzajPaliwa() << std::endl;
+	os << pojazd.GetRokProdukcji() << std::endl;
+	os << pojazd.GetTyp() << std::endl;
+	os << pojazd.GetTypNadwozia() << std::endl;
+	os << pojazd.GetVin() << std::endl;
+	os << pojazd.wyposazenie.automatycznaSkrzynia << std::endl;
+	os << pojazd.wyposazenie.elLusterka << std::endl;
+	os << pojazd.wyposazenie.elSzyby << std::endl;
+	os << pojazd.wyposazenie.klimatyzacja << std::endl;
+	os << pojazd.wyposazenie.nawigacja << std::endl;
+	os << pojazd.wyposazenie.zestawGlosnomowiacy << std::endl;
 	return os;
 }
 
 std::istream& operator >> (std::istream& is, Uzytkownik& uzytkownik)
 {
-	is >> uzytkownik;
+	int tmp;
+	is >> uzytkownik.haslo;
+	is >> uzytkownik.imie;
+	is >> uzytkownik.login;
+	is >> uzytkownik.nazwisko;
+	is >> tmp;
+	uzytkownik.uprawnienia = Uprawnienia(tmp);
 	return is;
 }
 
 std::ostream& operator << (std::ostream& os, const Uzytkownik& uzytkownik)
 {
-	os << uzytkownik;
+	os << uzytkownik.haslo << std::endl;
+	os << uzytkownik.imie << std::endl;
+	os << uzytkownik.login << std::endl;
+	os << uzytkownik.nazwisko << std::endl;
+	os << uzytkownik.uprawnienia << std::endl;
 	return os;
 }
 
@@ -239,11 +237,19 @@ void Listy::WczytajListePojazdow()
 	Pojazd pojazd;
 
 	bazaPojazdow.open("Baza_Pojazdow.bin", std::ios::in | std::ios::binary);
-	while (!bazaPojazdow.eof())
+	if (!bazaPojazdow.good())
 	{
-		bazaPojazdow >> pojazd;
-		ListaPojazdow.push_back(pojazd);
+		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
 	}
+	else
+	{
+		while (!bazaPojazdow.eof())
+		{
+			bazaPojazdow >> pojazd;
+			ListaPojazdow.push_back(pojazd);
+		}
+	}
+	
 	bazaPojazdow.close();
 }
 

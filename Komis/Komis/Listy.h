@@ -9,11 +9,12 @@ public:
 	Listy();
 	~Listy();
 	std::list<Pojazd> ListaPojazdow;
-	std::list<Pojazd> GetListByPrzebieg(int przebiegOd = 0, int przebiegDo = -1);
+	void GetListByPrzebiegOd(int, std::list<Pojazd>);
+	std::list<Pojazd> GetListByPrzebiegDo(int);
 	std::list<Pojazd> GetListByRocznik(short rokOd = 1900, short rokDo = -1);
-	std::list<Pojazd> GetListByPaliwo(Paliwo);
 	std::list<Pojazd> GetListByMoc(short mocOd = 0, short mocDo = -1);
 	std::list<Pojazd> GetListByPojemnosc(int pojemnoscOd = 0, int pojemnoscDo = -1);
+	std::list<Pojazd> GetListByPaliwo(Paliwo);
 	std::list<Pojazd> GetListByRodzajNadwozia(TypNadwozia);
 
 	std::list<Uzytkownik> ListaUzytkownikow;

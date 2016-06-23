@@ -443,7 +443,7 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 	{
 		try 
 		{
-			tmp = Int16::Parse(this->rokTextBox->Text);
+			tmp = Int32::Parse(this->rokTextBox->Text);
 			pojazd.SetRokProdukcji(tmp);
 		}
 		catch (System::FormatException^ e)
@@ -460,7 +460,7 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 
 	try
 	{
-		tmp = Int16::Parse(this->pojemnoscTextBox->Text);
+		tmp = Int32::Parse(this->pojemnoscTextBox->Text);
 		pojazd.SetPojemnosc(tmp);
 	}
 	catch (System::FormatException^ e)
@@ -471,7 +471,7 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 
 	try
 	{
-		tmp = Int16::Parse(this->mocTextBox->Text);
+		tmp = Int32::Parse(this->mocTextBox->Text);
 		pojazd.SetMoc(tmp);
 	}
 	catch (System::FormatException^ e)

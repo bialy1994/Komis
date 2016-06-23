@@ -1,6 +1,5 @@
 #pragma once
 #include <msclr\marshal_cppstd.h>
-#include "Enums.h"
 #include "Listy.h"
 
 namespace Komis {
