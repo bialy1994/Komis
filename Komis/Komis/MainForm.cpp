@@ -166,6 +166,7 @@ void Komis::MainForm::InitializeComponent()
 	this->paliwoColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->nadwozieColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->wiecejColumn = (gcnew System::Windows::Forms::DataGridViewLinkColumn());
+	this->czyscButton = (gcnew System::Windows::Forms::Button());
 	(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataTable))->BeginInit();
 	this->SuspendLayout();
 	// 
@@ -319,8 +320,8 @@ void Komis::MainForm::InitializeComponent()
 	// 
 	this->paliwoComboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 	this->paliwoComboBox->FormattingEnabled = true;
-	this->paliwoComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
-		L"DIESEL", L"BENZYNA", L"ELEKTRYCZNY", L"LPG",
+	this->paliwoComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
+		L"", L"DIESEL", L"BENZYNA", L"ELEKTRYCZNY", L"LPG",
 			L"BENZYNA_LPG", L"HYBRYDOWY"
 	});
 	this->paliwoComboBox->Location = System::Drawing::Point(159, 67);
@@ -332,8 +333,8 @@ void Komis::MainForm::InitializeComponent()
 	// 
 	this->nadwozieComboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 	this->nadwozieComboBox->FormattingEnabled = true;
-	this->nadwozieComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(9) {
-		L"SEDAN", L"HATCHBACK", L"KOMBI", L"PICKUP",
+	this->nadwozieComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(10) {
+		L"", L"SEDAN", L"HATCHBACK", L"KOMBI", L"PICKUP",
 			L"KABRIOLET", L"MINIVAN", L"VAN", L"COUPE", L"INNY"
 	});
 	this->nadwozieComboBox->Location = System::Drawing::Point(249, 67);
@@ -433,11 +434,22 @@ void Komis::MainForm::InitializeComponent()
 	this->wiecejColumn->Name = L"wiecejColumn";
 	this->wiecejColumn->ReadOnly = true;
 	// 
+	// czyscButton
+	// 
+	this->czyscButton->Location = System::Drawing::Point(425, 65);
+	this->czyscButton->Name = L"czyscButton";
+	this->czyscButton->Size = System::Drawing::Size(83, 23);
+	this->czyscButton->TabIndex = 24;
+	this->czyscButton->Text = L"Wyczysc filtry";
+	this->czyscButton->UseVisualStyleBackColor = true;
+	this->czyscButton->Click += gcnew System::EventHandler(this, &MainForm::czyscButton_Click);
+	// 
 	// MainForm
 	// 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(639, 374);
+	this->Controls->Add(this->czyscButton);
 	this->Controls->Add(this->dataTable);
 	this->Controls->Add(this->wylogujLinkLabel);
 	this->Controls->Add(this->filtrujButton);
@@ -468,6 +480,7 @@ void Komis::MainForm::InitializeComponent()
 	(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataTable))->EndInit();
 	this->ResumeLayout(false);
 	this->PerformLayout();
+
 }
 
 System::Void Komis::MainForm::wylogujLinkLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e) 
@@ -485,6 +498,7 @@ System::Void Komis::MainForm::button1_Click(System::Object^  sender, System::Eve
 
 System::Void Komis::MainForm::WypelnijTabele(std::list<Pojazd> lista)
 {
+	dataTable->Rows->Clear();
 	std::list<Pojazd>::iterator iterator;
 	for (iterator = lista.begin(); iterator != lista.end(); iterator++)
 	{
@@ -508,16 +522,17 @@ System::Void Komis::MainForm::MainForm_Load(System::Object^  sender, System::Eve
 
 System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	/*Listy lista;
+	Listy lista;
 	lista.WczytajListePojazdow();
+	std::list<Pojazd> listaPojazdow = lista.ListaPojazdow;
 	int tmp;
 	
-	if (!(this->przebiegOdTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(przebiegOdTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(przebiegOdTextBox->Text);
-			lista.GetListByPrzebiegOd(tmp);
+			lista.GetListByPrzebiegOd(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -525,12 +540,12 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->przebiegDoTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(przebiegDoTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(przebiegDoTextBox->Text);
-			lista.GetListByPrzebiegDo(tmp);
+			lista.GetListByPrzebiegDo(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -538,12 +553,12 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->rokProdukcjiOdTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(rokProdukcjiOdTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(rokProdukcjiOdTextBox->Text);
-			lista.GetListByRocznik(tmp);
+			lista.GetListByRocznikOd(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -551,12 +566,12 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->rokProdukcjiDoTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(rokProdukcjiDoTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(rokProdukcjiDoTextBox->Text);
-			lista.GetListByRocznik(tmp);
+			lista.GetListByRocznikDo(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -564,12 +579,12 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->mocOdTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(mocOdTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(mocOdTextBox->Text);
-			lista.GetListByMoc(tmp);
+			lista.GetListByMocOd(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -577,12 +592,12 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->mocDoTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(mocDoTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(mocDoTextBox->Text);
-			lista.GetListByMoc(tmp);
+			lista.GetListByMocDo(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
@@ -590,30 +605,72 @@ System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, Syste
 		}
 	}
 
-	if (!(this->pojemnoscOdTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(pojemnoscOdTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(pojemnoscOdTextBox->Text);
-			lista.GetListByPojemnosc(tmp);
+			lista.GetListByPojemnoscOd(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
-			MessageBox::Show("Niepoprawny format mocy");
+			MessageBox::Show("Niepoprawny format pojemnosci");
 		}
 	}
 
-	if (!(this->pojemnoscDoTextBox->Text->IsNullOrEmpty))
+	if (!System::String::IsNullOrEmpty(pojemnoscDoTextBox->Text))
 	{
 		try
 		{
 			tmp = Convert::ToInt32(pojemnoscDoTextBox->Text);
-			lista.GetListByPojemnosc(tmp);
+			lista.GetListByPojemnoscDo(tmp, listaPojazdow);
 		}
 		catch (System::FormatException^ e)
 		{
-			MessageBox::Show("Niepoprawny format mocy");
+			MessageBox::Show("Niepoprawny format pojemnosci");
 		}
-	}*/
+	}
+
+	if(!System::String::IsNullOrEmpty(paliwoComboBox->Text))
+	{
+		try
+		{
+			tmp = Convert::ToInt32(paliwoComboBox->SelectedIndex);
+			lista.GetListByPaliwo(Paliwo(tmp-1), listaPojazdow);
+		}
+		catch (System::FormatException^ e)
+		{
+			MessageBox::Show("Niepoprawne paliwo");
+		}
+	}
+	
+	if(!System::String::IsNullOrEmpty(nadwozieComboBox->Text))
+	{
+		try
+		{
+			tmp = Convert::ToInt32(nadwozieComboBox->SelectedIndex);
+			lista.GetListByRodzajNadwozia(TypNadwozia(tmp-1), listaPojazdow);
+		}
+		catch (System::FormatException^ e)
+		{
+			MessageBox::Show("Niepoprawny typ nadwozia");
+		}
+	}
+
+	WypelnijTabele(listaPojazdow);
+}
+
+System::Void Komis::MainForm::czyscButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	przebiegOdTextBox->Text = nullptr;
+	przebiegDoTextBox->Text = nullptr;
+	rokProdukcjiOdTextBox->Text = nullptr;
+	rokProdukcjiDoTextBox->Text = nullptr;
+	mocOdTextBox->Text = nullptr;
+	mocDoTextBox->Text = nullptr;
+	paliwoComboBox->SelectedIndex = NULL;
+	nadwozieComboBox->SelectedIndex = NULL;
+	pojemnoscOdTextBox->Text = nullptr;
+	pojemnoscDoTextBox->Text = nullptr;
 }
 

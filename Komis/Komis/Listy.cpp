@@ -15,133 +15,163 @@ Listy::~Listy()
 	ListaUzytkownikow.clear();
 }
 
-void Listy::GetListByPrzebiegOd(int przebiegOd, std::list<Pojazd> lista)
+void Listy::GetListByPrzebiegOd(int przebiegOd, std::list<Pojazd>& listaPojazdow)
 {
+	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
 	{
-		if (iterator->GetPrzebieg() > przebiegOd)
+		if (iterator->GetPrzebieg() >= przebiegOd)
 		{
 			lista.push_back(*iterator);
 		}
 	}
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByPrzebiegDo(int przebiegDo)
+void Listy::GetListByPrzebiegDo(int przebiegDo, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
 	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
 	{
-		if (iterator->GetPrzebieg() < przebiegDo)
+		if (iterator->GetPrzebieg() <= przebiegDo)
 		{
 			lista.push_back(*iterator);
 		}
 	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByRocznik(short rokOd, short rokDo)
+void Listy::GetListByRocznikOd(short rokOd, std::list<Pojazd>& listaPojazdow)
+{
+	std::list<Pojazd> lista;
+	std::list<Pojazd>::iterator iterator;
+
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
+	{
+		if (iterator->GetRokProdukcji() >= rokOd)
+		{
+			lista.push_back(*iterator);
+		}
+	}
+	listaPojazdow = lista;
+}
+
+void Listy::GetListByRocznikDo(short rokDo, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
 	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
 	{
-		if (iterator->GetRokProdukcji() > rokOd && iterator->GetRokProdukcji() < rokDo)
+		if (iterator->GetRokProdukcji() <= rokDo)
 		{
 			lista.push_back(*iterator);
 		}
 	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByPaliwo(Paliwo paliwo)
+void Listy::GetListByPaliwo(Paliwo paliwo, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
 	{
 		if (iterator->GetRodzajPaliwa() == paliwo)
 		{
 			lista.push_back(*iterator);
 		}
 	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByMoc(short mocOd, short mocDo)
+void Listy::GetListByMocOd(short mocOd, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	if (mocDo < 0)
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
 	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+		if (iterator->GetMoc() >= mocOd)
 		{
-			if (iterator->GetMoc() > mocOd)
-			{
-				lista.push_back(*iterator);
-			}
+			lista.push_back(*iterator);
 		}
 	}
-	else
-	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
-		{
-			if (iterator->GetMoc() > mocOd && iterator->GetMoc() < mocDo)
-			{
-				lista.push_back(*iterator);
-			}
-		}
-	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByPojemnosc(int pojemnoscOd, int pojemnoscDo)
+void Listy::GetListByMocDo(short mocDo, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	if (pojemnoscDo < 0)
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
 	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+		if (iterator->GetMoc() <= mocDo)
 		{
-			if (iterator->GetPojemnosc() > pojemnoscOd)
-			{
-				lista.push_back(*iterator);
-			}
+			lista.push_back(*iterator);
 		}
 	}
-	else
-	{
-		for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
-		{
-			if (iterator->GetPojemnosc() > pojemnoscOd && iterator->GetPojemnosc() < pojemnoscDo)
-			{
-				lista.push_back(*iterator);
-			}
-		}
-	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
-std::list<Pojazd> Listy::GetListByRodzajNadwozia(TypNadwozia typ)
+void Listy::GetListByPojemnoscOd(int pojemnoscOd, std::list<Pojazd>& listaPojazdow)
 {
 	std::list<Pojazd> lista;
 	std::list<Pojazd>::iterator iterator;
 
-	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
+	{
+		if (iterator->GetPojemnosc() >= pojemnoscOd)
+		{
+			lista.push_back(*iterator);
+		}
+	}
+	listaPojazdow.clear();
+	listaPojazdow = lista;
+}
+
+void Listy::GetListByPojemnoscDo(int pojemnoscDo, std::list<Pojazd>& listaPojazdow)
+{
+	std::list<Pojazd> lista;
+	std::list<Pojazd>::iterator iterator;
+
+		for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
+		{
+			if (iterator->GetPojemnosc() <= pojemnoscDo)
+			{
+				lista.push_back(*iterator);
+			}
+		}
+	listaPojazdow.clear();
+	listaPojazdow = lista;
+}
+
+void Listy::GetListByRodzajNadwozia(TypNadwozia typ, std::list<Pojazd>& listaPojazdow)
+{
+	std::list<Pojazd> lista;
+	std::list<Pojazd>::iterator iterator;
+
+	for (iterator = listaPojazdow.begin(); iterator != listaPojazdow.end(); ++iterator)
 	{
 		if (iterator->GetTypNadwozia() == typ)
 		{
 			lista.push_back(*iterator);
 		}
 	}
-	return lista;
+	listaPojazdow.clear();
+	listaPojazdow = lista;
 }
 
 

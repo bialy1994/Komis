@@ -69,6 +69,7 @@ namespace Komis {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  paliwoColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  nadwozieColumn;
 	private: System::Windows::Forms::DataGridViewLinkColumn^  wiecejColumn;
+	private: System::Windows::Forms::Button^  czyscButton;
 
 	private:
 		System::ComponentModel::Container ^components;
@@ -81,5 +82,6 @@ private: System::Void wylogujLinkLabel_LinkClicked(System::Object^  sender, Syst
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e);
 private: System::Void filtrujButton_Click(System::Object^  sender, System::EventArgs^  e);
-};
+private: System::Void czyscButton_Click(System::Object^  sender, System::EventArgs^  e);
+	};
 }

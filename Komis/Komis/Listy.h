@@ -9,13 +9,16 @@ public:
 	Listy();
 	~Listy();
 	std::list<Pojazd> ListaPojazdow;
-	void GetListByPrzebiegOd(int, std::list<Pojazd>);
-	std::list<Pojazd> GetListByPrzebiegDo(int);
-	std::list<Pojazd> GetListByRocznik(short rokOd = 1900, short rokDo = -1);
-	std::list<Pojazd> GetListByMoc(short mocOd = 0, short mocDo = -1);
-	std::list<Pojazd> GetListByPojemnosc(int pojemnoscOd = 0, int pojemnoscDo = -1);
-	std::list<Pojazd> GetListByPaliwo(Paliwo);
-	std::list<Pojazd> GetListByRodzajNadwozia(TypNadwozia);
+	void GetListByPrzebiegOd(int, std::list<Pojazd>&);
+	void GetListByPrzebiegDo(int, std::list<Pojazd>&);
+	void GetListByRocznikOd(short, std::list<Pojazd>&);
+	void GetListByRocznikDo(short, std::list<Pojazd>&);
+	void GetListByMocOd(short, std::list<Pojazd>&);
+	void GetListByMocDo(short, std::list<Pojazd>&);
+	void GetListByPojemnoscOd(int, std::list<Pojazd>&);
+	void GetListByPojemnoscDo(int, std::list<Pojazd>&);
+	void GetListByPaliwo(Paliwo, std::list<Pojazd>&);
+	void GetListByRodzajNadwozia(TypNadwozia, std::list<Pojazd>&);
 
 	std::list<Uzytkownik> ListaUzytkownikow;
 
