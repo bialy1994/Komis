@@ -1,31 +1,20 @@
-﻿  Listy.cpp
-Listy.cpp(183): error C2678: binary '>>': no operator found which takes a left-hand operand of type 'std::basic_istream<char,std::char_traits<char>>' (or there is no acceptable conversion)
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(482): note: could be 'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_streambuf<char,std::char_traits<char>> *)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(463): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(void *&)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(445): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(long double &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(427): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(double &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(408): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(float &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(390): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned __int64 &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(371): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(__int64 &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(352): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned long &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(334): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(long &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(316): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned int &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(290): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(int &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(271): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned short &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(236): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(short &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(217): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(bool &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(210): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::ios_base &(__cdecl *)(std::ios_base &))'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(203): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(197): note: or       'std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_istream<char,std::char_traits<char>> &(__cdecl *)(std::basic_istream<char,std::char_traits<char>> &))'
-  Listy.cpp(178): note: or       'std::istream &operator >>(std::istream &,Pojazd &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(1073): note: or       'std::basic_istream<char,std::char_traits<char>> &std::operator >><std::char_traits<char>>(std::basic_istream<char,std::char_traits<char>> &,signed char *)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(1080): note: or       'std::basic_istream<char,std::char_traits<char>> &std::operator >><std::char_traits<char>>(std::basic_istream<char,std::char_traits<char>> &,signed char &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(1087): note: or       'std::basic_istream<char,std::char_traits<char>> &std::operator >><std::char_traits<char>>(std::basic_istream<char,std::char_traits<char>> &,unsigned char *)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(1094): note: or       'std::basic_istream<char,std::char_traits<char>> &std::operator >><std::char_traits<char>>(std::basic_istream<char,std::char_traits<char>> &,unsigned char &)'
-  D:\Pliki programów (x86)\Microsoft Visual Studio 14.0\VC\include\istream(1104): note: or       'std::basic_istream<char,std::char_traits<char>> &std::operator >><char,std::char_traits<char>,const char[2]>(std::basic_istream<char,std::char_traits<char>> &&,_Ty (&))'
-          with
-          [
-              _Ty=const char [2]
-          ]
-  Listy.cpp(183): note: while trying to match the argument list '(std::basic_istream<char,std::char_traits<char>>, const char [2])'
-Listy.cpp(218): warning C4227: anachronism used: qualifiers on reference are ignored
+﻿  LoginForm.cpp
+  Main.cpp
+Main.cpp(6): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  MainForm.cpp
+MainForm.cpp(551): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(564): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(577): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(590): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(603): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(616): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(629): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(642): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(655): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(668): warning C4101: 'e': unreferenced local variable
+  UzytkownikForm.cpp
+  Generating Code...
+c:\users\michał białuski\documents\github\komis\komis\komis\uzytkownikform.cpp(13): warning C4715: 'UprawnieniaToString': not all control paths return a value
+  DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.exe
+  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)

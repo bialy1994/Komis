@@ -1,7 +1,7 @@
   Komis.DodajPojazdForm.resources - Embedded, ContainedInManifestFile, 
-  Komis.ErrorForm.resources - Embedded, ContainedInManifestFile, 
   Komis.LoginForm.resources - Embedded, ContainedInManifestFile, 
   Komis.MainForm.resources - Embedded, ContainedInManifestFile, 
+  Komis.UzytkownikForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Komis, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -20,13 +20,13 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class Komis.DodajPojazdForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-Class Komis.ErrorForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+Class Komis.UzytkownikForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Uzytkownik*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Komis.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Uzytkownik*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Komis.LoginForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

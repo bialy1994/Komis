@@ -235,7 +235,7 @@ std::ostream& operator << (std::ostream& os, Pojazd& const pojazd)
 	os << pojazd.wyposazenie.elSzyby << std::endl;
 	os << pojazd.wyposazenie.klimatyzacja << std::endl;
 	os << pojazd.wyposazenie.nawigacja << std::endl;
-	os << pojazd.wyposazenie.zestawGlosnomowiacy << std::endl;
+	os << pojazd.wyposazenie.zestawGlosnomowiacy;
 	return os;
 }
 
@@ -251,13 +251,13 @@ std::istream& operator >> (std::istream& is, Uzytkownik& uzytkownik)
 	return is;
 }
 
-std::ostream& operator << (std::ostream& os, const Uzytkownik& uzytkownik)
+std::ostream& operator << (std::ostream& os, Uzytkownik& uzytkownik)
 {
 	os << uzytkownik.haslo << std::endl;
 	os << uzytkownik.imie << std::endl;
 	os << uzytkownik.login << std::endl;
 	os << uzytkownik.nazwisko << std::endl;
-	os << uzytkownik.uprawnienia << std::endl;
+	os << uzytkownik.uprawnienia;
 	return os;
 }
 
@@ -266,7 +266,7 @@ void Listy::WczytajListePojazdow()
 	std::ifstream bazaPojazdow;
 	Pojazd pojazd;
 
-	bazaPojazdow.open("Baza_Pojazdow.bin", std::ios::in | std::ios::binary);
+	bazaPojazdow.open("Baza_Pojazdow", std::ios::in | std::ios::binary);
 	if (!bazaPojazdow.good())
 	{
 		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
@@ -288,11 +288,18 @@ void Listy::WczytajListeUzytkownikow()
 	std::ifstream bazaUzytkownikow;
 	Uzytkownik uzytkownik;
 
-	bazaUzytkownikow.open("Baza_Uzytkownikow.bin", std::ios::in | std::ios::binary);
-	while (!bazaUzytkownikow.eof())
+	bazaUzytkownikow.open("Baza_Uzytkownikow", std::ios::in | std::ios::binary);
+	if (!bazaUzytkownikow.good())
 	{
-		bazaUzytkownikow >> uzytkownik;
-		ListaUzytkownikow.push_back(uzytkownik);
+		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
+	}
+	else
+	{
+		while (!bazaUzytkownikow.eof())
+		{
+			bazaUzytkownikow >> uzytkownik;
+			ListaUzytkownikow.push_back(uzytkownik);
+		}
 	}
 	bazaUzytkownikow.close();
 }
@@ -302,7 +309,7 @@ void Listy::ZapiszListePojazdow()
 	std::ofstream bazaPojazdow;
 	Pojazd pojazd;
 
-	bazaPojazdow.open("Baza_Pojazdow.bin", std::ios::out | std::ios::binary);
+	bazaPojazdow.open("Baza_Pojazdow", std::ios::out | std::ios::binary);
 
 	std::list<Pojazd>::iterator iterator;
 
@@ -318,7 +325,7 @@ void Listy::ZapiszListeUzytkownikow()
 	std::ofstream bazaUzytkownikow;
 	Uzytkownik uzytkownik;
 
-	bazaUzytkownikow.open("Baza_Uzytkownikow.bin", std::ios::out | std::ios::binary);
+	bazaUzytkownikow.open("Baza_Uzytkownikow", std::ios::out | std::ios::binary);
 
 	std::list<Uzytkownik>::iterator iterator;
 

@@ -59,7 +59,6 @@ enum KategoriaPojazdu
 enum Uprawnienia
 {
 	ADMIN,
-	SPRZEDAWCA,
-	KUPIEC
+	SPRZEDAWCA
 };
 

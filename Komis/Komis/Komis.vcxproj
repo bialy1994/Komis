@@ -129,9 +129,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Enums.h" />
-    <ClInclude Include="ErrorForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="Listy.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
@@ -144,10 +141,12 @@
     </ClInclude>
     <ClInclude Include="Pojazd.h" />
     <ClInclude Include="Uzytkownik.h" />
+    <ClInclude Include="UzytkownikForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DodajPojazdForm.cpp" />
-    <ClCompile Include="ErrorForm.cpp" />
     <ClCompile Include="Listy.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -157,6 +156,7 @@
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="Pojazd.cpp" />
     <ClCompile Include="Uzytkownik.cpp" />
+    <ClCompile Include="UzytkownikForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -169,14 +169,14 @@
     <EmbeddedResource Include="DodajPojazdForm.resx">
       <DependentUpon>DodajPojazdForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorForm.resx">
-      <DependentUpon>ErrorForm.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UzytkownikForm.resx">
+      <DependentUpon>UzytkownikForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

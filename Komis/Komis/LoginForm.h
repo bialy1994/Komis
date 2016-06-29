@@ -1,6 +1,5 @@
 #pragma once
 #include"MainForm.h"
-#include"ErrorForm.h"
 
 namespace Komis {
 

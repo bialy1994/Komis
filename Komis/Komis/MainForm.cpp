@@ -119,19 +119,6 @@ std::string KategoriaPojazduToString(KategoriaPojazdu kategoria)
 	}
 }
 
-std::string UprawnieniaToString(Uprawnienia uprawnienia)
-{
-	switch (uprawnienia)
-	{
-	case ADMIN:
-		return "Admin";
-	case SPRZEDAWCA:
-		return "Sprzedawca";
-	case KUPIEC:
-		return "Klient";
-	}
-}
-
 void Komis::MainForm::InitializeComponent()
 {
 	this->przebiegOdLabel = (gcnew System::Windows::Forms::Label());
@@ -167,6 +154,8 @@ void Komis::MainForm::InitializeComponent()
 	this->nadwozieColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->wiecejColumn = (gcnew System::Windows::Forms::DataGridViewLinkColumn());
 	this->czyscButton = (gcnew System::Windows::Forms::Button());
+	this->dodajUzytkownikaButton = (gcnew System::Windows::Forms::Button());
+	this->daneUzytkownikaLabel = (gcnew System::Windows::Forms::LinkLabel());
 	(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataTable))->BeginInit();
 	this->SuspendLayout();
 	// 
@@ -321,8 +310,8 @@ void Komis::MainForm::InitializeComponent()
 	this->paliwoComboBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 	this->paliwoComboBox->FormattingEnabled = true;
 	this->paliwoComboBox->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-		L"", L"DIESEL", L"BENZYNA", L"ELEKTRYCZNY", L"LPG",
-			L"BENZYNA_LPG", L"HYBRYDOWY"
+		L"", L"DIESEL", L"BENZYNA", L"ELEKTRYCZNY",
+			L"LPG", L"BENZYNA_LPG", L"HYBRYDOWY"
 	});
 	this->paliwoComboBox->Location = System::Drawing::Point(159, 67);
 	this->paliwoComboBox->Name = L"paliwoComboBox";
@@ -346,7 +335,7 @@ void Komis::MainForm::InitializeComponent()
 	// 
 	this->button1->Location = System::Drawing::Point(530, 67);
 	this->button1->Name = L"button1";
-	this->button1->Size = System::Drawing::Size(97, 23);
+	this->button1->Size = System::Drawing::Size(113, 23);
 	this->button1->TabIndex = 20;
 	this->button1->Text = L"Dodaj pojazd";
 	this->button1->UseVisualStyleBackColor = true;
@@ -365,7 +354,7 @@ void Komis::MainForm::InitializeComponent()
 	// wylogujLinkLabel
 	// 
 	this->wylogujLinkLabel->AutoSize = true;
-	this->wylogujLinkLabel->Location = System::Drawing::Point(582, 9);
+	this->wylogujLinkLabel->Location = System::Drawing::Point(598, 9);
 	this->wylogujLinkLabel->Name = L"wylogujLinkLabel";
 	this->wylogujLinkLabel->Size = System::Drawing::Size(45, 13);
 	this->wylogujLinkLabel->TabIndex = 22;
@@ -375,6 +364,8 @@ void Komis::MainForm::InitializeComponent()
 	// 
 	// dataTable
 	// 
+	this->dataTable->AllowUserToAddRows = false;
+	this->dataTable->AllowUserToDeleteRows = false;
 	this->dataTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 	this->dataTable->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
 		this->markaColumn,
@@ -383,7 +374,7 @@ void Komis::MainForm::InitializeComponent()
 	this->dataTable->Location = System::Drawing::Point(17, 96);
 	this->dataTable->Name = L"dataTable";
 	this->dataTable->ReadOnly = true;
-	this->dataTable->Size = System::Drawing::Size(610, 268);
+	this->dataTable->Size = System::Drawing::Size(626, 268);
 	this->dataTable->TabIndex = 23;
 	// 
 	// markaColumn
@@ -444,11 +435,34 @@ void Komis::MainForm::InitializeComponent()
 	this->czyscButton->UseVisualStyleBackColor = true;
 	this->czyscButton->Click += gcnew System::EventHandler(this, &MainForm::czyscButton_Click);
 	// 
+	// dodajUzytkownikaButton
+	// 
+	this->dodajUzytkownikaButton->Location = System::Drawing::Point(530, 38);
+	this->dodajUzytkownikaButton->Name = L"dodajUzytkownikaButton";
+	this->dodajUzytkownikaButton->Size = System::Drawing::Size(113, 23);
+	this->dodajUzytkownikaButton->TabIndex = 25;
+	this->dodajUzytkownikaButton->Text = L"Dodaj uzytkownika";
+	this->dodajUzytkownikaButton->UseVisualStyleBackColor = true;
+	this->dodajUzytkownikaButton->Click += gcnew System::EventHandler(this, &MainForm::dodajUzytkownikaButton_Click);
+	// 
+	// daneUzytkownikaLabel
+	// 
+	this->daneUzytkownikaLabel->AutoSize = true;
+	this->daneUzytkownikaLabel->Location = System::Drawing::Point(535, 9);
+	this->daneUzytkownikaLabel->Name = L"daneUzytkownikaLabel";
+	this->daneUzytkownikaLabel->Size = System::Drawing::Size(57, 13);
+	this->daneUzytkownikaLabel->TabIndex = 26;
+	this->daneUzytkownikaLabel->TabStop = true;
+	this->daneUzytkownikaLabel->Text = L"Moje dane";
+	this->daneUzytkownikaLabel->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MainForm::daneUzytkownikaLabel_LinkClicked);
+	// 
 	// MainForm
 	// 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-	this->ClientSize = System::Drawing::Size(639, 374);
+	this->ClientSize = System::Drawing::Size(655, 374);
+	this->Controls->Add(this->daneUzytkownikaLabel);
+	this->Controls->Add(this->dodajUzytkownikaButton);
 	this->Controls->Add(this->czyscButton);
 	this->Controls->Add(this->dataTable);
 	this->Controls->Add(this->wylogujLinkLabel);
@@ -672,5 +686,17 @@ System::Void Komis::MainForm::czyscButton_Click(System::Object ^ sender, System:
 	nadwozieComboBox->SelectedIndex = NULL;
 	pojemnoscOdTextBox->Text = nullptr;
 	pojemnoscDoTextBox->Text = nullptr;
+}
+
+System::Void Komis::MainForm::dodajUzytkownikaButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	Form^ rgForm = gcnew UzytkownikForm;
+	rgForm->Show();
+}
+
+System::Void Komis::MainForm::daneUzytkownikaLabel_LinkClicked(System::Object ^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs ^ e)
+{
+	UzytkownikForm^ rgForm = gcnew UzytkownikForm(uzytkownik);
+	rgForm->Show();
 }
 

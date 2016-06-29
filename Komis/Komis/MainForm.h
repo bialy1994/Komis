@@ -1,6 +1,8 @@
 #pragma once
 #include "DodajPojazdForm.h"
 #include"Listy.h"
+#include"Uzytkownik.h"
+#include"UzytkownikForm.h"
 
 namespace Komis {
 
@@ -17,12 +19,10 @@ namespace Komis {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
-		MainForm(void)
+		MainForm(Uzytkownik* u)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			uzytkownik = u;
 		}
 
 	protected:
@@ -73,15 +73,19 @@ namespace Komis {
 
 	private:
 		System::ComponentModel::Container ^components;
-
+	private: System::Windows::Forms::Button^  dodajUzytkownikaButton;
+	private: System::Windows::Forms::LinkLabel^  daneUzytkownikaLabel;
+			 Uzytkownik *uzytkownik;
 		void InitializeComponent(void);
 
 		System::Void WypelnijTabele(std::list<Pojazd> lista);
 
-private: System::Void wylogujLinkLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e);
-private: System::Void filtrujButton_Click(System::Object^  sender, System::EventArgs^  e);
-private: System::Void czyscButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void wylogujLinkLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void MainForm_Load(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void filtrujButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void czyscButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void dodajUzytkownikaButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void daneUzytkownikaLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 	};
 }

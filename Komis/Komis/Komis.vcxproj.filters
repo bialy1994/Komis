@@ -42,10 +42,10 @@
     <ClInclude Include="MainForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorForm.h">
+    <ClInclude Include="DodajPojazdForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DodajPojazdForm.h">
+    <ClInclude Include="UzytkownikForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,18 +77,15 @@
     <ClCompile Include="MainForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorForm.cpp">
+    <ClCompile Include="DodajPojazdForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DodajPojazdForm.cpp">
+    <ClCompile Include="UzytkownikForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LoginForm.resx">
-      <Filter>Resource Files</Filter>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
