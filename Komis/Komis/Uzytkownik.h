@@ -6,6 +6,7 @@ class Uzytkownik
 {
 public:
 	Uzytkownik();
+	Uzytkownik(const Uzytkownik&);
 	~Uzytkownik();
 	std::string login;
 	std::string imie;

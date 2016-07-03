@@ -1,20 +1,14 @@
-﻿  LoginForm.cpp
-  Main.cpp
-Main.cpp(6): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  MainForm.cpp
-MainForm.cpp(551): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(564): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(577): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(590): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(603): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(616): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(629): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(642): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(655): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(668): warning C4101: 'e': unreferenced local variable
-  UzytkownikForm.cpp
-  Generating Code...
-c:\users\michał białuski\documents\github\komis\komis\komis\uzytkownikform.cpp(13): warning C4715: 'UprawnieniaToString': not all control paths return a value
+﻿  MainForm.cpp
+MainForm.cpp(552): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(565): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(578): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(591): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(604): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(617): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(630): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(643): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(656): warning C4101: 'e': unreferenced local variable
+MainForm.cpp(669): warning C4101: 'e': unreferenced local variable
   DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.exe
   Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)

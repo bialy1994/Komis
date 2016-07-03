@@ -19,10 +19,10 @@ namespace Komis {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
-		MainForm(Uzytkownik* u)
+		MainForm(Uzytkownik u)
 		{
 			InitializeComponent();
-			uzytkownik = u;
+			uzytkownik = new Uzytkownik(u);
 		}
 
 	protected:

@@ -424,6 +424,7 @@ void Komis::MainForm::InitializeComponent()
 	this->wiecejColumn->HeaderText = L"Szczegó³y";
 	this->wiecejColumn->Name = L"wiecejColumn";
 	this->wiecejColumn->ReadOnly = true;
+	this->wiecejColumn->Text = L"szczegoly";
 	// 
 	// czyscButton
 	// 

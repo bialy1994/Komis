@@ -76,27 +76,27 @@ void Komis::LoginForm::InitializeComponent()
 
 System::Void Komis::LoginForm::loginButton_Click(System::Object^  sender, System::EventArgs^  e)
 {
-//	Listy lista;
-//	lista.WczytajListeUzytkownikow();
-//	std::list<Uzytkownik>::iterator iterator;
-//
-//	for(iterator = lista.ListaUzytkownikow.begin(); iterator != lista.ListaUzytkownikow.end(); ++iterator)
-//	{
-//		if(loginTextBox->Text == msclr::interop::marshal_as<System::String^>(iterator->login))
-//		{
-//			if(hasloTextBox->Text == msclr::interop::marshal_as<System::String^>(iterator->haslo))
-//			{
-				Uzytkownik uzytkownik;// = *iterator;
-				Form^ rgForm = gcnew MainForm(&uzytkownik);
+	Listy lista;
+	lista.WczytajListeUzytkownikow();
+	std::list<Uzytkownik>::iterator iterator;
+
+	for(iterator = lista.ListaUzytkownikow.begin(); iterator != lista.ListaUzytkownikow.end(); ++iterator)
+	{
+		if(loginTextBox->Text == msclr::interop::marshal_as<System::String^>(iterator->login))
+		{
+			if(hasloTextBox->Text == msclr::interop::marshal_as<System::String^>(iterator->haslo))
+			{
+				Uzytkownik uzytkownik = *iterator;
+				Form^ rgForm = gcnew MainForm(uzytkownik);
 				rgForm->Show();
 				this->Hide();
-//				lista.ListaUzytkownikow.clear();
-//				break;
-//			}
-//			else
-//			{
-//				MessageBox::Show("Niepoprawne haslo");
-//			}
-//		}
-//	}
+				//lista.ListaUzytkownikow.clear();
+				break;
+			}
+			else
+			{
+				MessageBox::Show("Niepoprawne haslo");
+			}
+		}
+	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include"Listy.h"
+#include <msclr\marshal_cppstd.h>
 
 namespace Komis {
 
@@ -24,7 +25,6 @@ namespace Komis {
 		UzytkownikForm(Uzytkownik* u)
 		{
 			InitializeComponent();
-			uzytkownik = u;
 			this->dodajButton->Enabled = false;
 			this->dodajButton->Visible = false;
 			this->anulujButton->Text = L"Zamknij";
@@ -32,6 +32,12 @@ namespace Komis {
 			this->nazwiskoTextBox->ReadOnly = true;
 			this->loginTextBox->ReadOnly = true;
 			this->hasloTextBox->ReadOnly = true;
+
+			imieTextBox->Text = msclr::interop::marshal_as<System::String^>(u->imie);
+			nazwiskoTextBox->Text = msclr::interop::marshal_as<System::String^>(u->nazwisko);
+			loginTextBox->Text = msclr::interop::marshal_as<System::String^>(u->login);
+			hasloTextBox->Text = msclr::interop::marshal_as<System::String^>(u->haslo);
+			//uprawnieniaComboBox->Text = msclr::interop::marshal_as<System::String^>(u->uprawnienia);
 		}
 
 	protected:
@@ -56,7 +62,6 @@ namespace Komis {
 	private: System::Windows::Forms::ComboBox^  uprawnieniaComboBox;
 
 	private:
-		Uzytkownik *uzytkownik;
 		System::ComponentModel::Container ^components;
 		void InitializeComponent(void);
 #pragma endregion

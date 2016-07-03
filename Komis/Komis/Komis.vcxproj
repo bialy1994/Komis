@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Downloads\mysql.h" />
     <ClInclude Include="DodajPojazdForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
