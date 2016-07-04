@@ -1,6 +1,5 @@
 #include "MainForm.h"
 #include"LoginForm.h"
-#include <msclr\marshal_cppstd.h>
 
 std::string NapedToString(Naped naped)
 {
@@ -530,9 +529,9 @@ System::Void Komis::MainForm::WypelnijTabele(std::list<Pojazd> lista)
 
 System::Void Komis::MainForm::MainForm_Load(System::Object^  sender, System::EventArgs^  e)
 {
-	Listy lista;
-	lista.WczytajListePojazdow();
-	WypelnijTabele(lista.ListaPojazdow);
+	//Listy lista;
+	//lista.WczytajListePojazdow();
+	//WypelnijTabele(lista.ListaPojazdow);
 }
 
 System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, System::EventArgs^  e)

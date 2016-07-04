@@ -4,6 +4,8 @@
 
 using namespace System;
 using namespace System::Windows::Forms;
+using namespace MySql::Data::MySqlClient;
+
 Listy::Listy()
 {
 }
@@ -181,6 +183,8 @@ std::istream& operator >> (std::istream& is, Pojazd &pojazd)
 	std::string strTmp;
 
 	is >> intTmp;
+	pojazd.SetId(intTmp);
+	is >> intTmp;
 	pojazd.SetKategoria(KategoriaPojazdu(intTmp));
 	is >> strTmp;
 	pojazd.SetKolor(strTmp);
@@ -217,6 +221,7 @@ std::istream& operator >> (std::istream& is, Pojazd &pojazd)
 
 std::ostream& operator << (std::ostream& os, Pojazd& const pojazd)
 {
+	os << pojazd.GetId() << std::endl;
 	os << pojazd.GetKategoria()<<std::endl;
 	os << pojazd.GetKolor() << std::endl;
 	os << pojazd.GetMoc() << std::endl;
@@ -235,13 +240,14 @@ std::ostream& operator << (std::ostream& os, Pojazd& const pojazd)
 	os << pojazd.wyposazenie.elSzyby << std::endl;
 	os << pojazd.wyposazenie.klimatyzacja << std::endl;
 	os << pojazd.wyposazenie.nawigacja << std::endl;
-	os << pojazd.wyposazenie.zestawGlosnomowiacy;
+	os << pojazd.wyposazenie.zestawGlosnomowiacy << std::endl;
 	return os;
 }
 
 std::istream& operator >> (std::istream& is, Uzytkownik& uzytkownik)
 {
 	int tmp;
+	is >> uzytkownik.UzytkownikId;
 	is >> uzytkownik.haslo;
 	is >> uzytkownik.imie;
 	is >> uzytkownik.login;
@@ -253,11 +259,12 @@ std::istream& operator >> (std::istream& is, Uzytkownik& uzytkownik)
 
 std::ostream& operator << (std::ostream& os, Uzytkownik& uzytkownik)
 {
+	os << uzytkownik.UzytkownikId << std::endl;
 	os << uzytkownik.haslo << std::endl;
 	os << uzytkownik.imie << std::endl;
 	os << uzytkownik.login << std::endl;
 	os << uzytkownik.nazwisko << std::endl;
-	os << uzytkownik.uprawnienia;
+	os << uzytkownik.uprawnienia << std::endl;
 	return os;
 }
 
@@ -266,7 +273,7 @@ void Listy::WczytajListePojazdow()
 	std::ifstream bazaPojazdow;
 	Pojazd pojazd;
 
-	bazaPojazdow.open("Baza_Pojazdow", std::ios::in | std::ios::binary);
+	bazaPojazdow.open("Baza_Pojazdow.txt", std::ios::in | std::ios::binary);
 	if (!bazaPojazdow.good())
 	{
 		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
@@ -288,7 +295,7 @@ void Listy::WczytajListeUzytkownikow()
 	std::ifstream bazaUzytkownikow;
 	Uzytkownik uzytkownik;
 
-	bazaUzytkownikow.open("Baza_Uzytkownikow", std::ios::in | std::ios::binary);
+	bazaUzytkownikow.open("Baza_Uzytkownikow.txt", std::ios::in | std::ios::binary);
 	if (!bazaUzytkownikow.good())
 	{
 		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
@@ -309,7 +316,7 @@ void Listy::ZapiszListePojazdow()
 	std::ofstream bazaPojazdow;
 	Pojazd pojazd;
 
-	bazaPojazdow.open("Baza_Pojazdow", std::ios::out | std::ios::binary);
+	bazaPojazdow.open("Baza_Pojazdow.txt", std::ios::out | std::ios::binary);
 
 	std::list<Pojazd>::iterator iterator;
 
@@ -325,7 +332,7 @@ void Listy::ZapiszListeUzytkownikow()
 	std::ofstream bazaUzytkownikow;
 	Uzytkownik uzytkownik;
 
-	bazaUzytkownikow.open("Baza_Uzytkownikow", std::ios::out | std::ios::binary);
+	bazaUzytkownikow.open("Baza_Uzytkownikow.txt", std::ios::out | std::ios::binary);
 
 	std::list<Uzytkownik>::iterator iterator;
 
@@ -335,3 +342,96 @@ void Listy::ZapiszListeUzytkownikow()
 	}
 	bazaUzytkownikow.close();
 }
+
+void Listy::PobierzZBazyUzytkownikow()
+{
+	Uzytkownik uzytkownik;
+
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.uzytkownicy;", connection);
+	MySqlDataReader^ dataReader;
+
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+
+		while (dataReader->Read())
+		{
+			uzytkownik.UzytkownikId = dataReader->GetInt32(0);
+			uzytkownik.imie = msclr::interop::marshal_as<std::string>(dataReader->GetString(1));
+			uzytkownik.nazwisko = msclr::interop::marshal_as<std::string>(dataReader->GetString(2));
+			uzytkownik.login = msclr::interop::marshal_as<std::string>(dataReader->GetString(3));
+			uzytkownik.haslo = msclr::interop::marshal_as<std::string>(dataReader->GetString(4));
+			uzytkownik.uprawnienia = Uprawnienia(dataReader->GetInt16(5));
+			ListaUzytkownikow.push_back(uzytkownik);
+		}
+		connection->Close();
+	} catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+}
+
+void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
+{
+	ListaUzytkownikow.push_back(u);
+
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ query;
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlDataReader^ dataReader;
+	MySqlCommand^ command = gcnew MySqlCommand("SELECT UzytkownikId FROM komis.uzytkownicy WHERE UzytkownikId=(SELECT max(UzytkownikId) FROM komis.uzytkownicy);", connection);
+	int newId, tmp;
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+
+		while (dataReader->Read())
+		{
+			newId = dataReader->GetInt32(0) + 1;
+		}
+		connection->Close();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+
+	switch (u.uprawnienia)
+	{
+	case Uprawnienia::ADMIN:
+		tmp = 0;
+		break;
+	case Uprawnienia::SPRZEDAWCA:
+		tmp = 1;
+		break;
+	default:
+		break;
+	}
+
+	query = "INSERT INTO komis.uzytkownicy(UzytkownikId,imie,nazwisko,login,haslo,uprawnienia)VALUES(";
+	
+	query += newId.ToString();
+
+	query += ",'" + msclr::interop::marshal_as<System::String^>(u.imie);
+
+	query += "','" + msclr::interop::marshal_as<System::String^>(u.nazwisko);
+
+	query += "','" + msclr::interop::marshal_as<System::String^>(u.login);
+
+	query += "','" + msclr::interop::marshal_as<System::String^>(u.haslo);
+
+	query += "'," + tmp + ")";
+
+	command = gcnew MySqlCommand( query, connection);
+
+	connection->Open();
+
+	dataReader = command->ExecuteReader();
+
+	connection->Close();
+}
+

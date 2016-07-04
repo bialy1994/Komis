@@ -3,6 +3,7 @@
 #include<fstream>
 #include "Pojazd.h"
 #include "Uzytkownik.h"
+#include <msclr\marshal_cppstd.h>
 class Listy
 {
 public:
@@ -27,13 +28,6 @@ public:
 
 	void ZapiszListePojazdow();
 	void ZapiszListeUzytkownikow();
-private:
-	/*void show_error(unsigned int handletype, const SQLHANDLE& handle) {
-		SQLWCHAR sqlstate[1024];
-		SQLWCHAR message[1024];
-		if (SQL_SUCCESS == SQLGetDiagRec(handletype, handle, 1, sqlstate, NULL, message, 1024, NULL))
-			throw(message);
-	}*/
-
-
+	void PobierzZBazyUzytkownikow();
+	void DodajDoBazyUzytkownikow(Uzytkownik);
 };

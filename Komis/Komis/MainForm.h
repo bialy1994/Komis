@@ -24,6 +24,10 @@ namespace Komis {
 			InitializeComponent();
 			uzytkownik = new Uzytkownik(u);
 		}
+		MainForm()
+		{
+			InitializeComponent();
+		}
 
 	protected:
 		/// <summary>

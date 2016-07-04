@@ -1,14 +1,5 @@
-﻿  MainForm.cpp
-MainForm.cpp(552): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(565): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(578): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(591): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(604): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(617): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(630): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(643): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(656): warning C4101: 'e': unreferenced local variable
-MainForm.cpp(669): warning C4101: 'e': unreferenced local variable
+﻿  Listy.cpp
+Listy.cpp(222): warning C4227: anachronism used: qualifiers on reference are ignored
   DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
   Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.exe
   Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)

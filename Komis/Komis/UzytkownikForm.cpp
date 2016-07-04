@@ -190,9 +190,8 @@ System::Void Komis::UzytkownikForm::dodajButton_Click(System::Object ^ sender, S
 
 	if (!isError)
 	{
-		lista.WczytajListeUzytkownikow();
-		lista.ListaUzytkownikow.push_back(uzytkownik);
-		lista.ZapiszListeUzytkownikow();
+		lista.PobierzZBazyUzytkownikow();
+		lista.DodajDoBazyUzytkownikow(uzytkownik);
 		MessageBox::Show("Pomyslnie dodano uzytkownika");
 		this->Hide();
 	}

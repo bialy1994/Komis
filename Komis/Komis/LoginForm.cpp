@@ -77,7 +77,7 @@ void Komis::LoginForm::InitializeComponent()
 System::Void Komis::LoginForm::loginButton_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	Listy lista;
-	lista.WczytajListeUzytkownikow();
+	lista.PobierzZBazyUzytkownikow();
 	std::list<Uzytkownik>::iterator iterator;
 
 	for(iterator = lista.ListaUzytkownikow.begin(); iterator != lista.ListaUzytkownikow.end(); ++iterator)
@@ -87,16 +87,13 @@ System::Void Komis::LoginForm::loginButton_Click(System::Object^  sender, System
 			if(hasloTextBox->Text == msclr::interop::marshal_as<System::String^>(iterator->haslo))
 			{
 				Uzytkownik uzytkownik = *iterator;
-				Form^ rgForm = gcnew MainForm(uzytkownik);
+				Form^ rgForm = gcnew Komis::MainForm(uzytkownik);
 				rgForm->Show();
 				this->Hide();
-				//lista.ListaUzytkownikow.clear();
 				break;
-			}
-			else
-			{
-				MessageBox::Show("Niepoprawne haslo");
 			}
 		}
 	}
+	if(iterator==lista.ListaUzytkownikow.end())
+		MessageBox::Show("Niepoprawne dane");
 }
