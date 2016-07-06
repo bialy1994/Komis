@@ -48,9 +48,6 @@
     <ClInclude Include="UzytkownikForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Downloads\mysql.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ListaUzytkownikowForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,6 +101,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="UzytkownikForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaUzytkownikowForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
