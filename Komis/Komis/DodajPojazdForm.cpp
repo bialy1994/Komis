@@ -705,9 +705,9 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 
 	if (!isError)
 	{
-		lista.PobierzZBazyPojazdow();
 		lista.DodajDoBazyPojazdow(pojazd);
 		MessageBox::Show("Pomyslnie dodano pojazd");
+		lista.ListaPojazdow.clear();
 		this->Hide();
 	}
 	else

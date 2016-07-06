@@ -3,6 +3,7 @@
 #include"Listy.h"
 #include"Uzytkownik.h"
 #include"UzytkownikForm.h"
+#include"ListaUzytkownikowForm.h"
 
 namespace Komis {
 
@@ -23,6 +24,12 @@ namespace Komis {
 		{
 			InitializeComponent();
 			uzytkownik = new Uzytkownik(u);
+
+			if (uzytkownik->uprawnienia!=Uprawnienia::ADMIN)
+			{
+				this->dodajUzytkownikaButton->Enabled = false;
+				this->listaUzytkownikowLinkLabel->Enabled = false;
+			}
 		}
 		MainForm()
 		{
@@ -88,6 +95,7 @@ namespace Komis {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  paliwoColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  nadwozieColumn;
 	private: System::Windows::Forms::DataGridViewLinkColumn^  wiecejColumn;
+	private: System::Windows::Forms::LinkLabel^  listaUzytkownikowLinkLabel;
 			 Uzytkownik *uzytkownik;
 		void InitializeComponent(void);
 
@@ -101,5 +109,6 @@ namespace Komis {
 	private: System::Void dodajUzytkownikaButton_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void daneUzytkownikaLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 	private: System::Void dataTable_CellClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
+	private: System::Void listaUzytkownikowLinkLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
 	};
 }

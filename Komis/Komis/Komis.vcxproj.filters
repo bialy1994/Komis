@@ -51,6 +51,9 @@
     <ClInclude Include="..\..\..\..\..\Downloads\mysql.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListaUzytkownikowForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Maszyna.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UzytkownikForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaUzytkownikowForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

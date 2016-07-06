@@ -28,16 +28,17 @@ namespace Komis {
 			this->dodajButton->Enabled = false;
 			this->dodajButton->Visible = false;
 			this->anulujButton->Text = L"Zamknij";
-			this->imieTextBox->ReadOnly = true;
-			this->nazwiskoTextBox->ReadOnly = true;
-			this->loginTextBox->ReadOnly = true;
-			this->hasloTextBox->ReadOnly = true;
+			this->imieTextBox->Enabled = false;
+			this->nazwiskoTextBox->Enabled = false;
+			this->loginTextBox->Enabled = false;
+			this->hasloTextBox->Enabled = false;
+			uprawnieniaComboBox->Enabled = false;
 
 			imieTextBox->Text = msclr::interop::marshal_as<System::String^>(u->imie);
 			nazwiskoTextBox->Text = msclr::interop::marshal_as<System::String^>(u->nazwisko);
 			loginTextBox->Text = msclr::interop::marshal_as<System::String^>(u->login);
 			hasloTextBox->Text = msclr::interop::marshal_as<System::String^>(u->haslo);
-			//uprawnieniaComboBox->Text = msclr::interop::marshal_as<System::String^>(u->uprawnienia);
+			uprawnieniaComboBox->SelectedIndex = Convert::ToInt16(u->uprawnienia);
 		}
 
 	protected:

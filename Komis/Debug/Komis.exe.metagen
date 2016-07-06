@@ -1,4 +1,5 @@
   Komis.DodajPojazdForm.resources - Embedded, ContainedInManifestFile, 
+  Komis.ListaUzytkownikowForm.resources - Embedded, ContainedInManifestFile, 
   Komis.LoginForm.resources - Embedded, ContainedInManifestFile, 
   Komis.MainForm.resources - Embedded, ContainedInManifestFile, 
   Komis.UzytkownikForm.resources - Embedded, ContainedInManifestFile, 
@@ -22,6 +23,9 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class Komis.DodajPojazdForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Komis.ListaUzytkownikowForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Komis.UzytkownikForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form

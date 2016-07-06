@@ -184,7 +184,7 @@ void Listy::PobierzZBazyUzytkownikow()
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.uzytkownicy;", connection);
 	MySqlDataReader^ dataReader;
-
+	ListaUzytkownikow.clear();
 	try
 	{
 		connection->Open();
@@ -209,8 +209,6 @@ void Listy::PobierzZBazyUzytkownikow()
 
 void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
 {
-	ListaUzytkownikow.push_back(u);
-
 	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
@@ -265,6 +263,7 @@ void Listy::PobierzZBazyPojazdow()
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.pojazd;", connection);
 	MySqlDataReader^ dataReader;
+	ListaPojazdow.clear();
 
 	try
 	{
@@ -325,8 +324,6 @@ void Listy::PobierzZBazyPojazdow()
 
 void Listy::DodajDoBazyPojazdow(Pojazd p)
 {
-	ListaPojazdow.push_back(p);
-
 	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);

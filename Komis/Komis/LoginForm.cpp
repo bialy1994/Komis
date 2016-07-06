@@ -95,5 +95,9 @@ System::Void Komis::LoginForm::loginButton_Click(System::Object^  sender, System
 		}
 	}
 	if(iterator==lista.ListaUzytkownikow.end())
+	{
 		MessageBox::Show("Niepoprawne dane");
+		lista.ListaUzytkownikow.clear();
+	}
+		
 }

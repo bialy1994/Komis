@@ -132,6 +132,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Enums.h" />
+    <ClInclude Include="ListaUzytkownikowForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Listy.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
@@ -150,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DodajPojazdForm.cpp" />
+    <ClCompile Include="ListaUzytkownikowForm.cpp" />
     <ClCompile Include="Listy.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -172,6 +176,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DodajPojazdForm.resx">
       <DependentUpon>DodajPojazdForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaUzytkownikowForm.resx">
+      <DependentUpon>ListaUzytkownikowForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>

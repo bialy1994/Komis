@@ -1,17 +1,6 @@
 #include "UzytkownikForm.h"
 #include <msclr\marshal_cppstd.h>
 
-std::string UprawnieniaToString(Uprawnienia uprawnienia)
-{
-	switch (uprawnienia)
-	{
-	case ADMIN:
-		return "Admin";
-	case SPRZEDAWCA:
-		return "Sprzedawca";
-	}
-}
-
 void Komis::UzytkownikForm::InitializeComponent(void)
 {
 	this->dodajButton = (gcnew System::Windows::Forms::Button());
@@ -190,7 +179,6 @@ System::Void Komis::UzytkownikForm::dodajButton_Click(System::Object ^ sender, S
 
 	if (!isError)
 	{
-		lista.PobierzZBazyUzytkownikow();
 		lista.DodajDoBazyUzytkownikow(uzytkownik);
 		MessageBox::Show("Pomyslnie dodano uzytkownika");
 		this->Hide();

@@ -1,6 +1,5 @@
 #pragma once
 #include<list>
-#include<fstream>
 #include "Pojazd.h"
 #include "Uzytkownik.h"
 #include <msclr\marshal_cppstd.h>
@@ -9,7 +8,10 @@ class Listy
 public:
 	Listy();
 	~Listy();
+
 	std::list<Pojazd> ListaPojazdow;
+	std::list<Uzytkownik> ListaUzytkownikow;
+
 	void GetListByPrzebiegOd(int, std::list<Pojazd>&);
 	void GetListByPrzebiegDo(int, std::list<Pojazd>&);
 	void GetListByRocznikOd(short, std::list<Pojazd>&);
@@ -20,8 +22,6 @@ public:
 	void GetListByPojemnoscDo(int, std::list<Pojazd>&);
 	void GetListByPaliwo(Paliwo, std::list<Pojazd>&);
 	void GetListByRodzajNadwozia(TypNadwozia, std::list<Pojazd>&);
-
-	std::list<Uzytkownik> ListaUzytkownikow;
 
 	void PobierzZBazyUzytkownikow();
 	void DodajDoBazyUzytkownikow(Uzytkownik);
