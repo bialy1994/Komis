@@ -23,11 +23,11 @@ public:
 
 	std::list<Uzytkownik> ListaUzytkownikow;
 
-	void WczytajListePojazdow();
-	void WczytajListeUzytkownikow();
-
-	void ZapiszListePojazdow();
-	void ZapiszListeUzytkownikow();
 	void PobierzZBazyUzytkownikow();
 	void DodajDoBazyUzytkownikow(Uzytkownik);
+	void PobierzZBazyPojazdow();
+	void DodajDoBazyPojazdow(Pojazd);
+	void UsunPojazd(int);
+	void UsunUzytkownika(int);
+	Pojazd PobierzPojazd(int);
 };

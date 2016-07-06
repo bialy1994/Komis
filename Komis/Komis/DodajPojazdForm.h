@@ -20,7 +20,11 @@ namespace Komis {
 		DodajPojazdForm(void)
 		{
 			InitializeComponent();
+			this->usunButton->Enabled = false;
+			this->usunButton->Visible = false;
 		}
+
+		DodajPojazdForm(int);
 
 	protected:
 		~DodajPojazdForm()
@@ -65,13 +69,15 @@ namespace Komis {
 	private: System::Windows::Forms::CheckBox^  klimaCheckBox;
 	private: System::Windows::Forms::CheckBox^  lusterkaCheckBox;
 	private: System::Windows::Forms::Label^  label14;
+	private: System::Windows::Forms::Button^  usunButton;
 	private:
-
+		int Id;
 		System::ComponentModel::Container ^components;
 		void InitializeComponent(void);
 		void DodajPojazd();
 
 	private: System::Void anulujButton_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void dodajButton_Click(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void usunButton_Click(System::Object^  sender, System::EventArgs^  e);
 	};
 }

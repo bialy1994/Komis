@@ -176,173 +176,6 @@ void Listy::GetListByRodzajNadwozia(TypNadwozia typ, std::list<Pojazd>& listaPoj
 	listaPojazdow = lista;
 }
 
-
-std::istream& operator >> (std::istream& is, Pojazd &pojazd)
-{
-	int intTmp;
-	std::string strTmp;
-
-	is >> intTmp;
-	pojazd.SetId(intTmp);
-	is >> intTmp;
-	pojazd.SetKategoria(KategoriaPojazdu(intTmp));
-	is >> strTmp;
-	pojazd.SetKolor(strTmp);
-	is >> intTmp;
-	pojazd.SetMoc(intTmp);
-	is >> intTmp;
-	pojazd.SetNaped(Naped(intTmp));
-	is >> strTmp;
-	pojazd.SetNazwaMarki(strTmp);
-	is >> strTmp;
-	pojazd.SetNazwaModelu(strTmp);
-	is >> intTmp;
-	pojazd.SetPojemnosc(intTmp);
-	is >> intTmp;
-	pojazd.SetPrzebieg(intTmp);
-	is >> intTmp;
-	pojazd.SetRodzajPaliwa(Paliwo(intTmp));
-	is >> intTmp;
-	pojazd.SetRokProdukcji(intTmp);
-	is >> intTmp;
-	pojazd.SetTyp(TypMaszyny(intTmp));
-	is >> intTmp;
-	pojazd.SetTypNadwozia(TypNadwozia(intTmp));
-	is >> strTmp;
-	pojazd.SetVin(strTmp);
-	is >> pojazd.wyposazenie.automatycznaSkrzynia;
-	is >> pojazd.wyposazenie.elLusterka;
-	is >> pojazd.wyposazenie.elSzyby;
-	is >> pojazd.wyposazenie.klimatyzacja;
-	is >> pojazd.wyposazenie.nawigacja;
-	is >> pojazd.wyposazenie.zestawGlosnomowiacy;
-	return is;
-}
-
-std::ostream& operator << (std::ostream& os, Pojazd& const pojazd)
-{
-	os << pojazd.GetId() << std::endl;
-	os << pojazd.GetKategoria()<<std::endl;
-	os << pojazd.GetKolor() << std::endl;
-	os << pojazd.GetMoc() << std::endl;
-	os << pojazd.GetNaped() << std::endl;
-	os << pojazd.GetNazwaMarki() << std::endl;
-	os << pojazd.GetNazwaModelu() << std::endl;
-	os << pojazd.GetPojemnosc() << std::endl;
-	os << pojazd.GetPrzebieg() << std::endl;
-	os << pojazd.GetRodzajPaliwa() << std::endl;
-	os << pojazd.GetRokProdukcji() << std::endl;
-	os << pojazd.GetTyp() << std::endl;
-	os << pojazd.GetTypNadwozia() << std::endl;
-	os << pojazd.GetVin() << std::endl;
-	os << pojazd.wyposazenie.automatycznaSkrzynia << std::endl;
-	os << pojazd.wyposazenie.elLusterka << std::endl;
-	os << pojazd.wyposazenie.elSzyby << std::endl;
-	os << pojazd.wyposazenie.klimatyzacja << std::endl;
-	os << pojazd.wyposazenie.nawigacja << std::endl;
-	os << pojazd.wyposazenie.zestawGlosnomowiacy << std::endl;
-	return os;
-}
-
-std::istream& operator >> (std::istream& is, Uzytkownik& uzytkownik)
-{
-	int tmp;
-	is >> uzytkownik.UzytkownikId;
-	is >> uzytkownik.haslo;
-	is >> uzytkownik.imie;
-	is >> uzytkownik.login;
-	is >> uzytkownik.nazwisko;
-	is >> tmp;
-	uzytkownik.uprawnienia = Uprawnienia(tmp);
-	return is;
-}
-
-std::ostream& operator << (std::ostream& os, Uzytkownik& uzytkownik)
-{
-	os << uzytkownik.UzytkownikId << std::endl;
-	os << uzytkownik.haslo << std::endl;
-	os << uzytkownik.imie << std::endl;
-	os << uzytkownik.login << std::endl;
-	os << uzytkownik.nazwisko << std::endl;
-	os << uzytkownik.uprawnienia << std::endl;
-	return os;
-}
-
-void Listy::WczytajListePojazdow()
-{
-	std::ifstream bazaPojazdow;
-	Pojazd pojazd;
-
-	bazaPojazdow.open("Baza_Pojazdow.txt", std::ios::in | std::ios::binary);
-	if (!bazaPojazdow.good())
-	{
-		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
-	}
-	else
-	{
-		while (!bazaPojazdow.eof())
-		{
-			bazaPojazdow >> pojazd;
-			ListaPojazdow.push_back(pojazd);
-		}
-	}
-	
-	bazaPojazdow.close();
-}
-
-void Listy::WczytajListeUzytkownikow()
-{
-	std::ifstream bazaUzytkownikow;
-	Uzytkownik uzytkownik;
-
-	bazaUzytkownikow.open("Baza_Uzytkownikow.txt", std::ios::in | std::ios::binary);
-	if (!bazaUzytkownikow.good())
-	{
-		MessageBox::Show("Nie udalo sie wczytac pliku z danymi");
-	}
-	else
-	{
-		while (!bazaUzytkownikow.eof())
-		{
-			bazaUzytkownikow >> uzytkownik;
-			ListaUzytkownikow.push_back(uzytkownik);
-		}
-	}
-	bazaUzytkownikow.close();
-}
-
-void Listy::ZapiszListePojazdow()
-{
-	std::ofstream bazaPojazdow;
-	Pojazd pojazd;
-
-	bazaPojazdow.open("Baza_Pojazdow.txt", std::ios::out | std::ios::binary);
-
-	std::list<Pojazd>::iterator iterator;
-
-	for (iterator = ListaPojazdow.begin(); iterator != ListaPojazdow.end(); ++iterator)
-	{
-		bazaPojazdow << *iterator;
-	}
-	bazaPojazdow.close();
-}
-
-void Listy::ZapiszListeUzytkownikow()
-{
-	std::ofstream bazaUzytkownikow;
-	Uzytkownik uzytkownik;
-
-	bazaUzytkownikow.open("Baza_Uzytkownikow.txt", std::ios::out | std::ios::binary);
-
-	std::list<Uzytkownik>::iterator iterator;
-
-	for (iterator = ListaUzytkownikow.begin(); iterator != ListaUzytkownikow.end(); ++iterator)
-	{
-		bazaUzytkownikow << *iterator;
-	}
-	bazaUzytkownikow.close();
-}
-
 void Listy::PobierzZBazyUzytkownikow()
 {
 	Uzytkownik uzytkownik;
@@ -400,19 +233,8 @@ void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
 		MessageBox::Show(e->Message);
 	}
 
-	switch (u.uprawnienia)
-	{
-	case Uprawnienia::ADMIN:
-		tmp = 0;
-		break;
-	case Uprawnienia::SPRZEDAWCA:
-		tmp = 1;
-		break;
-	default:
-		break;
-	}
-
-	query = "INSERT INTO komis.uzytkownicy(UzytkownikId,imie,nazwisko,login,haslo,uprawnienia)VALUES(";
+	query = "INSERT INTO komis.uzytkownicy(UzytkownikId,imie,nazwisko,login,"
+		+"haslo,uprawnienia)VALUES(";
 	
 	query += newId.ToString();
 
@@ -424,7 +246,7 @@ void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
 
 	query += "','" + msclr::interop::marshal_as<System::String^>(u.haslo);
 
-	query += "'," + tmp + ")";
+	query += "'," + Convert::ToInt16(u.uprawnienia) + ")";
 
 	command = gcnew MySqlCommand( query, connection);
 
@@ -434,4 +256,255 @@ void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
 
 	connection->Close();
 }
+
+void Listy::PobierzZBazyPojazdow()
+{
+	Pojazd pojazd;
+
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.pojazd;", connection);
+	MySqlDataReader^ dataReader;
+
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+
+		while (dataReader->Read())
+		{
+			pojazd.SetId(dataReader->GetInt32(0));
+			
+			pojazd.SetNazwaMarki(msclr::interop::marshal_as<std::string>(dataReader->GetString(1)));
+
+			pojazd.SetNazwaModelu(msclr::interop::marshal_as<std::string>(dataReader->GetString(2)));
+
+			pojazd.SetPojemnosc(dataReader->GetInt32(3));
+
+			pojazd.SetMoc(dataReader->GetInt32(4));
+
+			pojazd.SetPrzebieg(dataReader->GetInt32(5));
+
+			pojazd.SetRokProdukcji(dataReader->GetInt32(6));
+
+			pojazd.SetRodzajPaliwa(Paliwo(dataReader->GetInt32(7)));
+
+			pojazd.SetNaped(Naped(dataReader->GetInt32(8)));
+
+			pojazd.SetKolor(msclr::interop::marshal_as<std::string>(dataReader->GetString(9)));
+
+			pojazd.SetVin(msclr::interop::marshal_as<std::string>(dataReader->GetString(10)));
+
+			pojazd.SetTypNadwozia(TypNadwozia(dataReader->GetInt16(11)));
+
+			pojazd.SetKategoria(KategoriaPojazdu(dataReader->GetInt16(12)));
+
+			pojazd.SetTyp(TypMaszyny(dataReader->GetInt16(13)));
+
+			pojazd.wyposazenie.automatycznaSkrzynia = dataReader->GetBoolean(14);
+
+			pojazd.wyposazenie.elLusterka = dataReader->GetBoolean(15);
+
+			pojazd.wyposazenie.elSzyby = dataReader->GetBoolean(16);
+
+			pojazd.wyposazenie.klimatyzacja = dataReader->GetBoolean(17);
+
+			pojazd.wyposazenie.nawigacja = dataReader->GetBoolean(18);
+
+			pojazd.wyposazenie.zestawGlosnomowiacy = dataReader->GetBoolean(19);
+
+			ListaPojazdow.push_back(pojazd);
+		}
+		connection->Close();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+}
+
+void Listy::DodajDoBazyPojazdow(Pojazd p)
+{
+	ListaPojazdow.push_back(p);
+
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ query;
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlDataReader^ dataReader;
+	MySqlCommand^ command = gcnew MySqlCommand("SELECT idPojazd FROM komis.pojazd WHERE idPojazd=(SELECT max(idPojazd) FROM komis.pojazd);", connection);
+	int newId, tmp;
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+
+		while (dataReader->Read())
+		{
+			newId = dataReader->GetInt32(0) + 1;
+		}
+		connection->Close();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+
+
+	query = "INSERT INTO komis.pojazd(idPojazd,Marka,Model,Pojemnosc,moc,"
+		+ "przebieg,rok_produkcji,paliwo,naped,kolor,VIN,typ_nadwozia,"
+		+ "kategoria_pojazdu,typ_maszyny,automatyczna_skrzynia,el_lusterka,"
+		+ "el_szyby,klimatyzacja,nawigacja,zestaw_glosnomowiacy)VALUES(";
+
+	query += newId.ToString();
+
+	query += ",'" + msclr::interop::marshal_as<System::String^>(p.GetNazwaMarki());
+
+	query += "','" + msclr::interop::marshal_as<System::String^>(p.GetNazwaModelu());
+
+	query += "'," + p.GetPojemnosc();
+
+	query += "," + p.GetMoc();
+
+	query += "," + p.GetPrzebieg();
+
+	query += "," + p.GetRokProdukcji();
+
+	query += "," + Convert::ToInt16(p.GetRodzajPaliwa());
+
+	query += "," + Convert::ToInt16(p.GetNaped());
+
+	query += ",'" + msclr::interop::marshal_as<System::String^>(p.GetKolor());
+
+	query += "','" + msclr::interop::marshal_as<System::String^>(p.GetVin());
+	
+	query += "'," + Convert::ToInt16(p.GetTypNadwozia());
+	
+	query += "," + Convert::ToInt16(p.GetKategoria());
+
+	query += "," + Convert::ToInt16(p.GetTyp());
+
+	query += "," + (p.wyposazenie.automatycznaSkrzynia == true ? 1 : 0);
+
+	query += "," + (p.wyposazenie.elLusterka == true ? 1 : 0);
+
+	query += "," + (p.wyposazenie.elSzyby == true ? 1 : 0);
+
+	query += "," + (p.wyposazenie.klimatyzacja == true ? 1 : 0);
+
+	query += "," + (p.wyposazenie.nawigacja == true ? 1 : 0);
+
+	query += "," + (p.wyposazenie.zestawGlosnomowiacy == true ? 1 : 0) + ")";
+
+	command = gcnew MySqlCommand(query, connection);
+
+	connection->Open();
+
+	dataReader = command->ExecuteReader();
+
+	connection->Close();
+}
+
+void Listy::UsunPojazd(int id)
+{
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ query;
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlDataReader^ dataReader;
+	MySqlCommand^ command = gcnew MySqlCommand("DELETE FROM komis.pojazd WHERE idPojazd = " + id, connection);
+
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+}
+
+void Listy::UsunUzytkownika(int id)
+{
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ query;
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlDataReader^ dataReader;
+	MySqlCommand^ command = gcnew MySqlCommand("DELETE FROM komis.uzytkownicy WHERE UzytkownikId = " + id, connection);
+
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+}
+
+Pojazd Listy::PobierzPojazd(int id)
+{
+	Pojazd pojazd;
+
+	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.pojazd WHERE idPojazd = " + id, connection);
+	MySqlDataReader^ dataReader;
+
+	try
+	{
+		connection->Open();
+		dataReader = command->ExecuteReader();
+
+		while (dataReader->Read())
+		{
+			pojazd.SetId(dataReader->GetInt32(0));
+
+			pojazd.SetNazwaMarki(msclr::interop::marshal_as<std::string>(dataReader->GetString(1)));
+
+			pojazd.SetNazwaModelu(msclr::interop::marshal_as<std::string>(dataReader->GetString(2)));
+
+			pojazd.SetPojemnosc(dataReader->GetInt32(3));
+
+			pojazd.SetMoc(dataReader->GetInt32(4));
+
+			pojazd.SetPrzebieg(dataReader->GetInt32(5));
+
+			pojazd.SetRokProdukcji(dataReader->GetInt32(6));
+
+			pojazd.SetRodzajPaliwa(Paliwo(dataReader->GetInt32(7)));
+
+			pojazd.SetNaped(Naped(dataReader->GetInt32(8)));
+
+			pojazd.SetKolor(msclr::interop::marshal_as<std::string>(dataReader->GetString(9)));
+
+			pojazd.SetVin(msclr::interop::marshal_as<std::string>(dataReader->GetString(10)));
+
+			pojazd.SetTypNadwozia(TypNadwozia(dataReader->GetInt16(11)));
+
+			pojazd.SetKategoria(KategoriaPojazdu(dataReader->GetInt16(12)));
+
+			pojazd.SetTyp(TypMaszyny(dataReader->GetInt16(13)));
+
+			pojazd.wyposazenie.automatycznaSkrzynia = dataReader->GetBoolean(14);
+
+			pojazd.wyposazenie.elLusterka = dataReader->GetBoolean(15);
+
+			pojazd.wyposazenie.elSzyby = dataReader->GetBoolean(16);
+
+			pojazd.wyposazenie.klimatyzacja = dataReader->GetBoolean(17);
+
+			pojazd.wyposazenie.nawigacja = dataReader->GetBoolean(18);
+
+			pojazd.wyposazenie.zestawGlosnomowiacy = dataReader->GetBoolean(19);
+		}
+	}
+	catch (Exception^ e)
+	{
+		MessageBox::Show(e->Message);
+	}
+	return pojazd;
+}
+
+
 

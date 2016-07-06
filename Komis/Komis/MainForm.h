@@ -65,6 +65,21 @@ namespace Komis {
 	private: System::Windows::Forms::Button^  filtrujButton;
 	private: System::Windows::Forms::LinkLabel^  wylogujLinkLabel;
 	private: System::Windows::Forms::DataGridView^  dataTable;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Button^  czyscButton;
+
+	private:
+		System::ComponentModel::Container ^components;
+	private: System::Windows::Forms::Button^  dodajUzytkownikaButton;
+	private: System::Windows::Forms::LinkLabel^  daneUzytkownikaLabel;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  idColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  markaColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  modelColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  przebiegColumn;
@@ -73,12 +88,6 @@ namespace Komis {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  paliwoColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  nadwozieColumn;
 	private: System::Windows::Forms::DataGridViewLinkColumn^  wiecejColumn;
-	private: System::Windows::Forms::Button^  czyscButton;
-
-	private:
-		System::ComponentModel::Container ^components;
-	private: System::Windows::Forms::Button^  dodajUzytkownikaButton;
-	private: System::Windows::Forms::LinkLabel^  daneUzytkownikaLabel;
 			 Uzytkownik *uzytkownik;
 		void InitializeComponent(void);
 
@@ -91,5 +100,6 @@ namespace Komis {
 	private: System::Void czyscButton_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void dodajUzytkownikaButton_Click(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void daneUzytkownikaLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
+	private: System::Void dataTable_CellClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e);
 	};
 }

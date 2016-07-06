@@ -1,5 +1,61 @@
 #include "DodajPojazdForm.h"
 
+Komis::DodajPojazdForm::DodajPojazdForm(int id)
+{
+	InitializeComponent();
+	Listy lista;
+	Pojazd pojazd = lista.PobierzPojazd(id);
+
+	Id = id;
+
+	this->markaTextBox->Text = msclr::interop::marshal_as<System::String^>(pojazd.GetNazwaMarki());
+	this->modelTextBox->Text = msclr::interop::marshal_as<System::String^>(pojazd.GetNazwaModelu());
+	this->rokTextBox->Text = pojazd.GetRokProdukcji().ToString();
+	this->pojemnoscTextBox->Text = pojazd.GetPojemnosc().ToString();
+	this->mocTextBox->Text = pojazd.GetMoc().ToString();
+	this->przebiegTextBox->Text = pojazd.GetPrzebieg().ToString();
+	this->vinTextBox->Text = msclr::interop::marshal_as<System::String^>(pojazd.GetVin());
+	this->kolorTextBox->Text = msclr::interop::marshal_as<System::String^>(pojazd.GetKolor());
+
+	this->typComboBox->SelectedIndex = Convert::ToInt16(pojazd.GetTyp());
+	this->kategoriaComboBox->SelectedIndex = Convert::ToInt16(pojazd.GetKategoria());
+	this->PaliwoComboBox->SelectedIndex = Convert::ToInt16(pojazd.GetRodzajPaliwa());
+	this->nadwozieComboBox->SelectedIndex = Convert::ToInt16(pojazd.GetTypNadwozia());
+	this->napedComboBox->SelectedIndex = Convert::ToInt16(pojazd.GetNaped());
+
+	this->szybyCheckBox->Checked = pojazd.wyposazenie.elSzyby;
+	this->lusterkaCheckBox->Checked = pojazd.wyposazenie.elLusterka;
+	this->glosnomowiacyCheckBox->Checked = pojazd.wyposazenie.zestawGlosnomowiacy;
+	this->nawigacjaCheckBox->Checked = pojazd.wyposazenie.nawigacja;
+	this->klimaCheckBox->Checked = pojazd.wyposazenie.klimatyzacja;
+	this->automatCheckBox->Checked = pojazd.wyposazenie.automatycznaSkrzynia;
+
+	this->markaTextBox->Enabled = false;
+	this->modelTextBox->Enabled = false;
+	this->rokTextBox->Enabled = false;
+	this->pojemnoscTextBox->Enabled = false;
+	this->mocTextBox->Enabled = false;
+	this->przebiegTextBox->Enabled = false;
+	this->vinTextBox->Enabled = false;
+	this->kolorTextBox->Enabled = false;
+	this->anulujButton->Text = L"Zamknij";
+	this->dodajButton->Enabled = false;
+	this->dodajButton->Visible = false;
+
+	this->szybyCheckBox->Enabled = false;
+	this->lusterkaCheckBox->Enabled = false;
+	this->glosnomowiacyCheckBox->Enabled = false;
+	this->nawigacjaCheckBox->Enabled = false;
+	this->klimaCheckBox->Enabled = false;
+	this->automatCheckBox->Enabled = false;
+
+	this->typComboBox->Enabled = false;
+	this->kategoriaComboBox->Enabled = false;
+	this->PaliwoComboBox->Enabled = false;
+	this->nadwozieComboBox->Enabled = false;
+	this->napedComboBox->Enabled = false;
+}
+
 void Komis::DodajPojazdForm::InitializeComponent()
 
 {
@@ -38,6 +94,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->klimaCheckBox = (gcnew System::Windows::Forms::CheckBox());
 	this->lusterkaCheckBox = (gcnew System::Windows::Forms::CheckBox());
 	this->label14 = (gcnew System::Windows::Forms::Label());
+	this->usunButton = (gcnew System::Windows::Forms::Button());
 	this->SuspendLayout();
 	// 
 	// label1
@@ -60,7 +117,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->typComboBox->Location = System::Drawing::Point(93, 11);
 	this->typComboBox->Name = L"typComboBox";
 	this->typComboBox->Size = System::Drawing::Size(121, 21);
-	this->typComboBox->TabIndex = 35;
+	this->typComboBox->TabIndex = 1;
 	// 
 	// label2
 	// 
@@ -98,7 +155,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->kategoriaComboBox->Location = System::Drawing::Point(93, 38);
 	this->kategoriaComboBox->Name = L"kategoriaComboBox";
 	this->kategoriaComboBox->Size = System::Drawing::Size(121, 21);
-	this->kategoriaComboBox->TabIndex = 5;
+	this->kategoriaComboBox->TabIndex = 2;
 	// 
 	// label4
 	// 
@@ -114,7 +171,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->modelTextBox->Location = System::Drawing::Point(93, 91);
 	this->modelTextBox->Name = L"modelTextBox";
 	this->modelTextBox->Size = System::Drawing::Size(121, 20);
-	this->modelTextBox->TabIndex = 7;
+	this->modelTextBox->TabIndex = 4;
 	// 
 	// label5
 	// 
@@ -136,7 +193,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->PaliwoComboBox->Location = System::Drawing::Point(93, 143);
 	this->PaliwoComboBox->Name = L"PaliwoComboBox";
 	this->PaliwoComboBox->Size = System::Drawing::Size(121, 21);
-	this->PaliwoComboBox->TabIndex = 9;
+	this->PaliwoComboBox->TabIndex = 6;
 	// 
 	// label6
 	// 
@@ -158,7 +215,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->nadwozieComboBox->Location = System::Drawing::Point(93, 170);
 	this->nadwozieComboBox->Name = L"nadwozieComboBox";
 	this->nadwozieComboBox->Size = System::Drawing::Size(121, 21);
-	this->nadwozieComboBox->TabIndex = 11;
+	this->nadwozieComboBox->TabIndex = 7;
 	// 
 	// napedComboBox
 	// 
@@ -168,7 +225,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->napedComboBox->Location = System::Drawing::Point(93, 197);
 	this->napedComboBox->Name = L"napedComboBox";
 	this->napedComboBox->Size = System::Drawing::Size(121, 21);
-	this->napedComboBox->TabIndex = 12;
+	this->napedComboBox->TabIndex = 8;
 	// 
 	// label7
 	// 
@@ -238,49 +295,49 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->rokTextBox->Location = System::Drawing::Point(93, 117);
 	this->rokTextBox->Name = L"rokTextBox";
 	this->rokTextBox->Size = System::Drawing::Size(121, 20);
-	this->rokTextBox->TabIndex = 20;
+	this->rokTextBox->TabIndex = 5;
 	// 
 	// pojemnoscTextBox
 	// 
 	this->pojemnoscTextBox->Location = System::Drawing::Point(93, 224);
 	this->pojemnoscTextBox->Name = L"pojemnoscTextBox";
 	this->pojemnoscTextBox->Size = System::Drawing::Size(121, 20);
-	this->pojemnoscTextBox->TabIndex = 21;
+	this->pojemnoscTextBox->TabIndex = 9;
 	// 
 	// mocTextBox
 	// 
 	this->mocTextBox->Location = System::Drawing::Point(93, 250);
 	this->mocTextBox->Name = L"mocTextBox";
 	this->mocTextBox->Size = System::Drawing::Size(121, 20);
-	this->mocTextBox->TabIndex = 22;
+	this->mocTextBox->TabIndex = 10;
 	// 
 	// przebiegTextBox
 	// 
 	this->przebiegTextBox->Location = System::Drawing::Point(93, 276);
 	this->przebiegTextBox->Name = L"przebiegTextBox";
 	this->przebiegTextBox->Size = System::Drawing::Size(121, 20);
-	this->przebiegTextBox->TabIndex = 23;
+	this->przebiegTextBox->TabIndex = 11;
 	// 
 	// vinTextBox
 	// 
 	this->vinTextBox->Location = System::Drawing::Point(93, 302);
 	this->vinTextBox->Name = L"vinTextBox";
 	this->vinTextBox->Size = System::Drawing::Size(121, 20);
-	this->vinTextBox->TabIndex = 24;
+	this->vinTextBox->TabIndex = 12;
 	// 
 	// kolorTextBox
 	// 
 	this->kolorTextBox->Location = System::Drawing::Point(93, 328);
 	this->kolorTextBox->Name = L"kolorTextBox";
 	this->kolorTextBox->Size = System::Drawing::Size(121, 20);
-	this->kolorTextBox->TabIndex = 25;
+	this->kolorTextBox->TabIndex = 13;
 	// 
 	// dodajButton
 	// 
 	this->dodajButton->Location = System::Drawing::Point(379, 325);
 	this->dodajButton->Name = L"dodajButton";
 	this->dodajButton->Size = System::Drawing::Size(75, 23);
-	this->dodajButton->TabIndex = 26;
+	this->dodajButton->TabIndex = 21;
 	this->dodajButton->Text = L"Dodaj";
 	this->dodajButton->UseVisualStyleBackColor = true;
 	this->dodajButton->Click += gcnew System::EventHandler(this, &DodajPojazdForm::dodajButton_Click);
@@ -290,7 +347,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->anulujButton->Location = System::Drawing::Point(277, 325);
 	this->anulujButton->Name = L"anulujButton";
 	this->anulujButton->Size = System::Drawing::Size(75, 23);
-	this->anulujButton->TabIndex = 27;
+	this->anulujButton->TabIndex = 20;
 	this->anulujButton->Text = L"Anuluj";
 	this->anulujButton->UseVisualStyleBackColor = true;
 	this->anulujButton->Click += gcnew System::EventHandler(this, &DodajPojazdForm::anulujButton_Click);
@@ -301,7 +358,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->szybyCheckBox->Location = System::Drawing::Point(237, 118);
 	this->szybyCheckBox->Name = L"szybyCheckBox";
 	this->szybyCheckBox->Size = System::Drawing::Size(110, 17);
-	this->szybyCheckBox->TabIndex = 28;
+	this->szybyCheckBox->TabIndex = 14;
 	this->szybyCheckBox->Text = L"Elektryczne szyby";
 	this->szybyCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -311,7 +368,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->automatCheckBox->Location = System::Drawing::Point(381, 172);
 	this->automatCheckBox->Name = L"automatCheckBox";
 	this->automatCheckBox->Size = System::Drawing::Size(65, 17);
-	this->automatCheckBox->TabIndex = 29;
+	this->automatCheckBox->TabIndex = 19;
 	this->automatCheckBox->Text = L"Automat";
 	this->automatCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -321,7 +378,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->glosnomowiacyCheckBox->Location = System::Drawing::Point(237, 172);
 	this->glosnomowiacyCheckBox->Name = L"glosnomowiacyCheckBox";
 	this->glosnomowiacyCheckBox->Size = System::Drawing::Size(138, 17);
-	this->glosnomowiacyCheckBox->TabIndex = 30;
+	this->glosnomowiacyCheckBox->TabIndex = 16;
 	this->glosnomowiacyCheckBox->Text = L"Zestaw g³oœnomówi¹cy";
 	this->glosnomowiacyCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -331,7 +388,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->nawigacjaCheckBox->Location = System::Drawing::Point(381, 118);
 	this->nawigacjaCheckBox->Name = L"nawigacjaCheckBox";
 	this->nawigacjaCheckBox->Size = System::Drawing::Size(76, 17);
-	this->nawigacjaCheckBox->TabIndex = 31;
+	this->nawigacjaCheckBox->TabIndex = 17;
 	this->nawigacjaCheckBox->Text = L"Nawigacja";
 	this->nawigacjaCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -341,7 +398,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->klimaCheckBox->Location = System::Drawing::Point(381, 145);
 	this->klimaCheckBox->Name = L"klimaCheckBox";
 	this->klimaCheckBox->Size = System::Drawing::Size(84, 17);
-	this->klimaCheckBox->TabIndex = 32;
+	this->klimaCheckBox->TabIndex = 18;
 	this->klimaCheckBox->Text = L"Klimatyzacja";
 	this->klimaCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -351,7 +408,7 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->lusterkaCheckBox->Location = System::Drawing::Point(237, 145);
 	this->lusterkaCheckBox->Name = L"lusterkaCheckBox";
 	this->lusterkaCheckBox->Size = System::Drawing::Size(125, 17);
-	this->lusterkaCheckBox->TabIndex = 33;
+	this->lusterkaCheckBox->TabIndex = 15;
 	this->lusterkaCheckBox->Text = L"Elektryczne Lusterka";
 	this->lusterkaCheckBox->UseVisualStyleBackColor = true;
 	// 
@@ -364,11 +421,22 @@ void Komis::DodajPojazdForm::InitializeComponent()
 	this->label14->TabIndex = 34;
 	this->label14->Text = L"WYPOSA¯ENIE";
 	// 
+	// usunButton
+	// 
+	this->usunButton->Location = System::Drawing::Point(379, 325);
+	this->usunButton->Name = L"usunButton";
+	this->usunButton->Size = System::Drawing::Size(75, 23);
+	this->usunButton->TabIndex = 35;
+	this->usunButton->Text = L"Usun";
+	this->usunButton->UseVisualStyleBackColor = true;
+	this->usunButton->Click += gcnew System::EventHandler(this, &DodajPojazdForm::usunButton_Click);
+	// 
 	// DodajPojazdForm
 	// 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(477, 371);
+	this->Controls->Add(this->usunButton);
 	this->Controls->Add(this->label14);
 	this->Controls->Add(this->lusterkaCheckBox);
 	this->Controls->Add(this->klimaCheckBox);
@@ -637,9 +705,8 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 
 	if (!isError)
 	{
-		lista.WczytajListePojazdow();
-		lista.ListaPojazdow.push_back(pojazd);
-		lista.ZapiszListePojazdow();
+		lista.PobierzZBazyPojazdow();
+		lista.DodajDoBazyPojazdow(pojazd);
 		MessageBox::Show("Pomyslnie dodano pojazd");
 		this->Hide();
 	}
@@ -648,5 +715,13 @@ System::Void Komis::DodajPojazdForm::dodajButton_Click(System::Object^  sender, 
 		MessageBox::Show("Dodawanie pojazdu nie powiodlo sie");
 		isError = false;
 	}
+}
+
+System::Void Komis::DodajPojazdForm::usunButton_Click(System::Object ^ sender, System::EventArgs ^ e)
+{
+	Listy lista;
+	lista.UsunPojazd(Id);
+	MessageBox::Show("Usunieto pojaz o nr ID = " + Id);
+	this->Hide();
 }
 

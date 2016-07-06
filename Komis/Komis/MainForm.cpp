@@ -144,6 +144,10 @@ void Komis::MainForm::InitializeComponent()
 	this->filtrujButton = (gcnew System::Windows::Forms::Button());
 	this->wylogujLinkLabel = (gcnew System::Windows::Forms::LinkLabel());
 	this->dataTable = (gcnew System::Windows::Forms::DataGridView());
+	this->czyscButton = (gcnew System::Windows::Forms::Button());
+	this->dodajUzytkownikaButton = (gcnew System::Windows::Forms::Button());
+	this->daneUzytkownikaLabel = (gcnew System::Windows::Forms::LinkLabel());
+	this->idColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->markaColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->modelColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->przebiegColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -152,9 +156,6 @@ void Komis::MainForm::InitializeComponent()
 	this->paliwoColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->nadwozieColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 	this->wiecejColumn = (gcnew System::Windows::Forms::DataGridViewLinkColumn());
-	this->czyscButton = (gcnew System::Windows::Forms::Button());
-	this->dodajUzytkownikaButton = (gcnew System::Windows::Forms::Button());
-	this->daneUzytkownikaLabel = (gcnew System::Windows::Forms::LinkLabel());
 	(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataTable))->BeginInit();
 	this->SuspendLayout();
 	// 
@@ -366,8 +367,8 @@ void Komis::MainForm::InitializeComponent()
 	this->dataTable->AllowUserToAddRows = false;
 	this->dataTable->AllowUserToDeleteRows = false;
 	this->dataTable->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-	this->dataTable->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
-		this->markaColumn,
+	this->dataTable->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
+		this->idColumn, this->markaColumn,
 			this->modelColumn, this->przebiegColumn, this->rokColumn, this->mocColumn, this->paliwoColumn, this->nadwozieColumn, this->wiecejColumn
 	});
 	this->dataTable->Location = System::Drawing::Point(17, 96);
@@ -375,6 +376,45 @@ void Komis::MainForm::InitializeComponent()
 	this->dataTable->ReadOnly = true;
 	this->dataTable->Size = System::Drawing::Size(626, 268);
 	this->dataTable->TabIndex = 23;
+	this->dataTable->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MainForm::dataTable_CellClick);
+	// 
+	// czyscButton
+	// 
+	this->czyscButton->Location = System::Drawing::Point(425, 65);
+	this->czyscButton->Name = L"czyscButton";
+	this->czyscButton->Size = System::Drawing::Size(83, 23);
+	this->czyscButton->TabIndex = 24;
+	this->czyscButton->Text = L"Wyczysc filtry";
+	this->czyscButton->UseVisualStyleBackColor = true;
+	this->czyscButton->Click += gcnew System::EventHandler(this, &MainForm::czyscButton_Click);
+	// 
+	// dodajUzytkownikaButton
+	// 
+	this->dodajUzytkownikaButton->Location = System::Drawing::Point(530, 38);
+	this->dodajUzytkownikaButton->Name = L"dodajUzytkownikaButton";
+	this->dodajUzytkownikaButton->Size = System::Drawing::Size(113, 23);
+	this->dodajUzytkownikaButton->TabIndex = 25;
+	this->dodajUzytkownikaButton->Text = L"Dodaj uzytkownika";
+	this->dodajUzytkownikaButton->UseVisualStyleBackColor = true;
+	this->dodajUzytkownikaButton->Click += gcnew System::EventHandler(this, &MainForm::dodajUzytkownikaButton_Click);
+	// 
+	// daneUzytkownikaLabel
+	// 
+	this->daneUzytkownikaLabel->AutoSize = true;
+	this->daneUzytkownikaLabel->Location = System::Drawing::Point(535, 9);
+	this->daneUzytkownikaLabel->Name = L"daneUzytkownikaLabel";
+	this->daneUzytkownikaLabel->Size = System::Drawing::Size(57, 13);
+	this->daneUzytkownikaLabel->TabIndex = 26;
+	this->daneUzytkownikaLabel->TabStop = true;
+	this->daneUzytkownikaLabel->Text = L"Moje dane";
+	this->daneUzytkownikaLabel->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MainForm::daneUzytkownikaLabel_LinkClicked);
+	// 
+	// idColumn
+	// 
+	this->idColumn->HeaderText = L"Id";
+	this->idColumn->Name = L"idColumn";
+	this->idColumn->ReadOnly = true;
+	this->idColumn->Width = 40;
 	// 
 	// markaColumn
 	// 
@@ -424,37 +464,6 @@ void Komis::MainForm::InitializeComponent()
 	this->wiecejColumn->Name = L"wiecejColumn";
 	this->wiecejColumn->ReadOnly = true;
 	this->wiecejColumn->Text = L"szczegoly";
-	// 
-	// czyscButton
-	// 
-	this->czyscButton->Location = System::Drawing::Point(425, 65);
-	this->czyscButton->Name = L"czyscButton";
-	this->czyscButton->Size = System::Drawing::Size(83, 23);
-	this->czyscButton->TabIndex = 24;
-	this->czyscButton->Text = L"Wyczysc filtry";
-	this->czyscButton->UseVisualStyleBackColor = true;
-	this->czyscButton->Click += gcnew System::EventHandler(this, &MainForm::czyscButton_Click);
-	// 
-	// dodajUzytkownikaButton
-	// 
-	this->dodajUzytkownikaButton->Location = System::Drawing::Point(530, 38);
-	this->dodajUzytkownikaButton->Name = L"dodajUzytkownikaButton";
-	this->dodajUzytkownikaButton->Size = System::Drawing::Size(113, 23);
-	this->dodajUzytkownikaButton->TabIndex = 25;
-	this->dodajUzytkownikaButton->Text = L"Dodaj uzytkownika";
-	this->dodajUzytkownikaButton->UseVisualStyleBackColor = true;
-	this->dodajUzytkownikaButton->Click += gcnew System::EventHandler(this, &MainForm::dodajUzytkownikaButton_Click);
-	// 
-	// daneUzytkownikaLabel
-	// 
-	this->daneUzytkownikaLabel->AutoSize = true;
-	this->daneUzytkownikaLabel->Location = System::Drawing::Point(535, 9);
-	this->daneUzytkownikaLabel->Name = L"daneUzytkownikaLabel";
-	this->daneUzytkownikaLabel->Size = System::Drawing::Size(57, 13);
-	this->daneUzytkownikaLabel->TabIndex = 26;
-	this->daneUzytkownikaLabel->TabStop = true;
-	this->daneUzytkownikaLabel->Text = L"Moje dane";
-	this->daneUzytkownikaLabel->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &MainForm::daneUzytkownikaLabel_LinkClicked);
 	// 
 	// MainForm
 	// 
@@ -516,28 +525,30 @@ System::Void Komis::MainForm::WypelnijTabele(std::list<Pojazd> lista)
 	std::list<Pojazd>::iterator iterator;
 	for (iterator = lista.begin(); iterator != lista.end(); iterator++)
 	{
-		dataTable->Rows->Add(msclr::interop::marshal_as<System::String^>(iterator->GetNazwaMarki()),
+		dataTable->Rows->Add(iterator->GetId(),
+			msclr::interop::marshal_as<System::String^>(iterator->GetNazwaMarki()),
 			msclr::interop::marshal_as<System::String^>(iterator->GetNazwaModelu()),
 			msclr::interop::marshal_as<System::String^>(std::to_string(iterator->GetPrzebieg())),
 			msclr::interop::marshal_as<System::String^>(std::to_string(iterator->GetRokProdukcji())),
 			msclr::interop::marshal_as<System::String^>(std::to_string(iterator->GetMoc())),
 			msclr::interop::marshal_as<System::String^>(PaliwoToString(iterator->GetRodzajPaliwa())),
-			msclr::interop::marshal_as<System::String^>(TypNadwoziaToString(iterator->GetTypNadwozia()))
+			msclr::interop::marshal_as<System::String^>(TypNadwoziaToString(iterator->GetTypNadwozia())),
+			msclr::interop::marshal_as<System::String^>(L"wiecej")
 		);
 	}
 }
 
 System::Void Komis::MainForm::MainForm_Load(System::Object^  sender, System::EventArgs^  e)
 {
-	//Listy lista;
-	//lista.WczytajListePojazdow();
-	//WypelnijTabele(lista.ListaPojazdow);
+	Listy lista;
+	lista.PobierzZBazyPojazdow();
+	WypelnijTabele(lista.ListaPojazdow);
 }
 
 System::Void Komis::MainForm::filtrujButton_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	Listy lista;
-	lista.WczytajListePojazdow();
+	lista.PobierzZBazyPojazdow();
 	std::list<Pojazd> listaPojazdow = lista.ListaPojazdow;
 	int tmp;
 	
@@ -698,5 +709,15 @@ System::Void Komis::MainForm::daneUzytkownikaLabel_LinkClicked(System::Object ^ 
 {
 	UzytkownikForm^ rgForm = gcnew UzytkownikForm(uzytkownik);
 	rgForm->Show();
+}
+
+System::Void Komis::MainForm::dataTable_CellClick(System::Object ^ sender, System::Windows::Forms::DataGridViewCellEventArgs ^ e)
+{
+	if(e->ColumnIndex == 8)
+	{
+		int id = int::Parse(dataTable[0, e->RowIndex]->Value->ToString());
+		Form^ rgForm = gcnew DodajPojazdForm(id);
+		rgForm->Show();
+	}
 }
 
