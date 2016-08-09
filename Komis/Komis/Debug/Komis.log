@@ -1,3 +1,10 @@
-﻿  DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
-  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.exe
-  Komis.vcxproj -> C:\Users\Michał Białuski\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)
+﻿  Listy.cpp
+Listy.cpp(222): warning C4101: 'e': unreferenced local variable
+Listy.cpp(226): warning C4101: 'e': unreferenced local variable
+Listy.cpp(247): warning C4101: 'tmp': unreferenced local variable
+Listy.cpp(362): warning C4101: 'tmp': unreferenced local variable
+Listy.cpp(437): warning C4101: 'query': unreferenced local variable
+Listy.cpp(456): warning C4101: 'query': unreferenced local variable
+  DodajPojazdForm.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Komis.vcxproj -> C:\Users\Admin\Documents\GitHub\Komis\Komis\Debug\Komis.exe
+  Komis.vcxproj -> C:\Users\Admin\Documents\GitHub\Komis\Komis\Debug\Komis.pdb (Partial PDB)

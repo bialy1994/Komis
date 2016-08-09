@@ -12,12 +12,13 @@ void Komis::LoginForm::InitializeComponent()
 	this->loginTextBox = (gcnew System::Windows::Forms::TextBox());
 	this->hasloTextBox = (gcnew System::Windows::Forms::TextBox());
 	this->loginButton = (gcnew System::Windows::Forms::Button());
+	this->databaseSettingsLabel = (gcnew System::Windows::Forms::LinkLabel());
 	this->SuspendLayout();
 	// 
 	// LoginLabel
 	// 
 	this->LoginLabel->AutoSize = true;
-	this->LoginLabel->Location = System::Drawing::Point(12, 28);
+	this->LoginLabel->Location = System::Drawing::Point(12, 37);
 	this->LoginLabel->Name = L"LoginLabel";
 	this->LoginLabel->Size = System::Drawing::Size(33, 13);
 	this->LoginLabel->TabIndex = 0;
@@ -26,7 +27,7 @@ void Komis::LoginForm::InitializeComponent()
 	// hasloLabel
 	// 
 	this->hasloLabel->AutoSize = true;
-	this->hasloLabel->Location = System::Drawing::Point(12, 54);
+	this->hasloLabel->Location = System::Drawing::Point(12, 63);
 	this->hasloLabel->Name = L"hasloLabel";
 	this->hasloLabel->Size = System::Drawing::Size(36, 13);
 	this->hasloLabel->TabIndex = 1;
@@ -34,14 +35,14 @@ void Komis::LoginForm::InitializeComponent()
 	// 
 	// loginTextBox
 	// 
-	this->loginTextBox->Location = System::Drawing::Point(64, 25);
+	this->loginTextBox->Location = System::Drawing::Point(64, 34);
 	this->loginTextBox->Name = L"loginTextBox";
 	this->loginTextBox->Size = System::Drawing::Size(119, 20);
 	this->loginTextBox->TabIndex = 2;
 	// 
 	// hasloTextBox
 	// 
-	this->hasloTextBox->Location = System::Drawing::Point(64, 51);
+	this->hasloTextBox->Location = System::Drawing::Point(64, 60);
 	this->hasloTextBox->Name = L"hasloTextBox";
 	this->hasloTextBox->PasswordChar = '*';
 	this->hasloTextBox->Size = System::Drawing::Size(119, 20);
@@ -57,11 +58,23 @@ void Komis::LoginForm::InitializeComponent()
 	this->loginButton->UseVisualStyleBackColor = true;
 	this->loginButton->Click += gcnew System::EventHandler(this, &LoginForm::loginButton_Click);
 	// 
+	// databaseSettingsLabel
+	// 
+	this->databaseSettingsLabel->AutoSize = true;
+	this->databaseSettingsLabel->Location = System::Drawing::Point(69, 9);
+	this->databaseSettingsLabel->Name = L"databaseSettingsLabel";
+	this->databaseSettingsLabel->Size = System::Drawing::Size(114, 13);
+	this->databaseSettingsLabel->TabIndex = 5;
+	this->databaseSettingsLabel->TabStop = true;
+	this->databaseSettingsLabel->Text = L"Zmieñ ustawienia bazy";
+	this->databaseSettingsLabel->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &LoginForm::databaseSettingsLabel_LinkClicked);
+	// 
 	// LoginForm
 	// 
 	this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 	this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 	this->ClientSize = System::Drawing::Size(195, 131);
+	this->Controls->Add(this->databaseSettingsLabel);
 	this->Controls->Add(this->loginButton);
 	this->Controls->Add(this->hasloTextBox);
 	this->Controls->Add(this->loginTextBox);
@@ -100,4 +113,10 @@ System::Void Komis::LoginForm::loginButton_Click(System::Object^  sender, System
 		lista.ListaUzytkownikow.clear();
 	}
 		
+}
+
+System::Void Komis::LoginForm::databaseSettingsLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e)
+{
+	Form^ rgForm = gcnew Komis::UstawieniaBazyDanychForm();
+	rgForm->Show();
 }

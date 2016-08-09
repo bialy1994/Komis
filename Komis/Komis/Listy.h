@@ -3,6 +3,7 @@
 #include "Pojazd.h"
 #include "Uzytkownik.h"
 #include <msclr\marshal_cppstd.h>
+#include<fstream>
 class Listy
 {
 public:

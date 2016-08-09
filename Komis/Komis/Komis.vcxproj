@@ -145,6 +145,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Pojazd.h" />
+    <ClInclude Include="UstawieniaBazyDanychForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Uzytkownik.h" />
     <ClInclude Include="UzytkownikForm.h">
       <FileType>CppForm</FileType>
@@ -161,6 +164,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="Pojazd.cpp" />
+    <ClCompile Include="UstawieniaBazyDanychForm.cpp" />
     <ClCompile Include="Uzytkownik.cpp" />
     <ClCompile Include="UzytkownikForm.cpp" />
   </ItemGroup>
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UstawieniaBazyDanychForm.resx">
+      <DependentUpon>UstawieniaBazyDanychForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UzytkownikForm.resx">
       <DependentUpon>UzytkownikForm.h</DependentUpon>

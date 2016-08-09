@@ -1,5 +1,6 @@
 #pragma once
 #include"MainForm.h"
+#include"UstawieniaBazyDanychForm.h"
 
 namespace Komis {
 
@@ -23,17 +24,16 @@ namespace Komis {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Label^  LoginLabel;
-	protected:
 	private: System::Windows::Forms::Label^  hasloLabel;
 	private: System::Windows::Forms::TextBox^  loginTextBox;
 	private: System::Windows::Forms::TextBox^  hasloTextBox;
 	private: System::Windows::Forms::Button^  loginButton;
-
-	private:
-		System::ComponentModel::Container ^components;
-		void InitializeComponent(void);
-#pragma endregion
+	private: System::Windows::Forms::LinkLabel^  databaseSettingsLabel;
+	private: System::ComponentModel::Container ^components;
+	private: void InitializeComponent(void);
 	private: System::Void loginButton_Click(System::Object^  sender, System::EventArgs^  e);
-};
+	private: System::Void databaseSettingsLabel_LinkClicked(System::Object^  sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^  e);
+	};
 }

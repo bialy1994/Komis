@@ -1,5 +1,4 @@
 #include "Listy.h"
-#include<iostream>
 
 
 using namespace System;
@@ -15,6 +14,24 @@ Listy::~Listy()
 {
 	ListaPojazdow.clear();
 	ListaUzytkownikow.clear();
+}
+
+System::String^ GetConnectionString()
+{
+	std::fstream plik;
+	std::string connection;
+	plik.open("connectionString.txt", std::ios::in);
+	if (plik.good())
+	{
+		std::getline(plik, connection);
+		plik.close();
+	}
+	else
+	{
+		System::String^ wyjatek = "Problem podczas otwierania pliku.\nZmieñ ustawienia bazy danych";
+		throw wyjatek;
+	}
+	return msclr::interop::marshal_as<System::String^>(connection);
 }
 
 void Listy::GetListByPrzebiegOd(int przebiegOd, std::list<Pojazd>& listaPojazdow)
@@ -179,14 +196,14 @@ void Listy::GetListByRodzajNadwozia(TypNadwozia typ, std::list<Pojazd>& listaPoj
 void Listy::PobierzZBazyUzytkownikow()
 {
 	Uzytkownik uzytkownik;
-
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
-	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
-	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.uzytkownicy;", connection);
-	MySqlDataReader^ dataReader;
-	ListaUzytkownikow.clear();
 	try
 	{
+		System::String^ connectionString = GetConnectionString();
+		MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
+		MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.uzytkownicy;", connection);
+		MySqlDataReader^ dataReader;
+		ListaUzytkownikow.clear();
+
 		connection->Open();
 		dataReader = command->ExecuteReader();
 
@@ -201,7 +218,20 @@ void Listy::PobierzZBazyUzytkownikow()
 			ListaUzytkownikow.push_back(uzytkownik);
 		}
 		connection->Close();
-	} catch (Exception^ e)
+	}
+	catch(System::ArgumentException^ e)
+	{
+		MessageBox::Show("Niepoprawny connection string!\n Zmieñ ustawienia bazy danych.");
+	}
+	catch (MySql::Data::MySqlClient::MySqlException^ e)
+	{
+		MessageBox::Show("Problem z po³¹czeniem z baz¹ danych.\n SprawdŸ dzia³anie serwera.");
+	}
+	catch (System::String^ wyjatek)
+	{
+		MessageBox::Show(wyjatek);
+	}
+	catch (Exception^ e)
 	{
 		MessageBox::Show(e->Message);
 	}
@@ -209,7 +239,7 @@ void Listy::PobierzZBazyUzytkownikow()
 
 void Listy::DodajDoBazyUzytkownikow(Uzytkownik u)
 {
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlDataReader^ dataReader;
@@ -259,7 +289,7 @@ void Listy::PobierzZBazyPojazdow()
 {
 	Pojazd pojazd;
 
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.pojazd;", connection);
 	MySqlDataReader^ dataReader;
@@ -324,7 +354,7 @@ void Listy::PobierzZBazyPojazdow()
 
 void Listy::DodajDoBazyPojazdow(Pojazd p)
 {
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlDataReader^ dataReader;
@@ -403,7 +433,7 @@ void Listy::DodajDoBazyPojazdow(Pojazd p)
 
 void Listy::UsunPojazd(int id)
 {
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlDataReader^ dataReader;
@@ -422,7 +452,7 @@ void Listy::UsunPojazd(int id)
 
 void Listy::UsunUzytkownika(int id)
 {
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	System::String^ query;
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlDataReader^ dataReader;
@@ -443,7 +473,7 @@ Pojazd Listy::PobierzPojazd(int id)
 {
 	Pojazd pojazd;
 
-	System::String^ connectionString = L"datasource=localhost;port=3306;username=root;password=04172Bia";
+	System::String^ connectionString = GetConnectionString();
 	MySqlConnection^ connection = gcnew MySqlConnection(connectionString);
 	MySqlCommand^ command = gcnew MySqlCommand("SELECT * FROM komis.pojazd WHERE idPojazd = " + id, connection);
 	MySqlDataReader^ dataReader;

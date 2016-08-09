@@ -2,6 +2,7 @@
   Komis.ListaUzytkownikowForm.resources - Embedded, ContainedInManifestFile, 
   Komis.LoginForm.resources - Embedded, ContainedInManifestFile, 
   Komis.MainForm.resources - Embedded, ContainedInManifestFile, 
+  Komis.UstawieniaBazyDanychForm.resources - Embedded, ContainedInManifestFile, 
   Komis.UzytkownikForm.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Komis, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
@@ -35,6 +36,9 @@ Class Komis.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(Uzytkownik*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Komis.UstawieniaBazyDanychForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Komis.LoginForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
